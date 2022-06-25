@@ -24,22 +24,39 @@ class Customer extends React.Component {
             customers: [],
 		};		
 	}
+	
+	status( response ) {
+        if ( response.status >= 200 && response.status < 300 ) {
+            return Promise.resolve( response )
+        } else {
+            return Promise.reject( new Error( response.statusText ) )
+        }
+    }
+
+	processData = ( data ) => {
+		console.log( "processData", data );
+		let tid = data.id;
+		if ( tid !== 0 ) {
+		}
+    }
 
 	getCustomers() {
-		fetch( "localhost:8080" + "/users", {
+        fetch( "http://localhost:8080/customer", {
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': '*/*',
+                'Accept': 'application/json',
             },
             method: 'get',
-        }).then(function(response) {
-			console.dir(response.json());
-			return response.json();
-		})
+        })
+		.then( this.status )
+		.then( function(response) { return response.json() } )
+		.then( this.processData )
+		.catch( function( error ) {
+			console.log( 'Request failed', error );
+		});
 	}
 
 	componentDidMount() {
-		this.getCustomers();
 	}
 	
   
@@ -47,7 +64,8 @@ class Customer extends React.Component {
 		const { classes } = this.props;
 			return (
 			<div className={classes.center}>
-				<Button variant="contained" color="primary" >Add Customer </Button>
+				<Button variant="contained" color="primary" onClick={()=>{this.getCustomers();
+				}}>Add Customer </Button>
 				<h1>Customers </h1>
 			</div>
 			);
