@@ -36,7 +36,7 @@ public class ContractDao {
 	
 
 	public List<Contract> getContracts() {
-		Query q = em.createQuery("select c from Contracts c");
+		Query q = em.createQuery("select c from Contract c");
 		List<Contract> contracts = q.getResultList();
 		return contracts;
 	}

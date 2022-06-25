@@ -36,7 +36,7 @@ public class CustomerDao {
 	
 
 	public List<Customer> getCustomers() {
-		Query q = em.createQuery("select c from Customers c");
+		Query q = em.createQuery("select c from Customer c");
 		List<Customer> customers = q.getResultList();
 		return customers;
 	}
