@@ -2,7 +2,7 @@
  *                                                                        *
  * This software is governed by the GPL version 2.                        *
  *                                                                        *
- * Copyright: Joerg Friedrich, University of Applied Sciences Esslingen   *
+ * Copyright: Jay Imort, Kyle Mezger                                      *
  *                                                                        *
  * $Id:$
  *                                                                        *
@@ -20,66 +20,52 @@ import javax.transaction.Transactional;
 
 import org.jboss.logging.Logger;
 
-import de.hse.swa.jodel.orm.model.User;
+import de.hse.swa.jodel.orm.model.Customer;
 
 @ApplicationScoped
-public class UserDao {
+public class CustomerDao {
 
     @Inject
     EntityManager em;
 
-	private static final Logger LOGGER = Logger.getLogger(UserDao.class);
+	private static final Logger LOGGER = Logger.getLogger(CustomerDao.class);
 	
-	public User getUser(Long id) {
-		return em.find(User.class, id);
+	public Customer getCustomer(Long id) {
+		return em.find(Customer.class, id);
 	}
 	
-	public User login(String username, String password) {
-		try {
-			LOGGER.debug("Checking for user name and password");
-			return (User) em.createQuery("SELECT u FROM User u WHERE u.username=:username AND "
-					+ "u.password=:password")
-					.setParameter("username", username)
-					.setParameter("password", password).getSingleResult();
 
-		} catch(NoResultException e) {
-			User u = new User();
-			u.setId(0L);
-			return u;
-		}
-	}
-
-	public List<User> getUsers() {
-		Query q = em.createQuery("select c from Tuser c");
-		List<User> users = q.getResultList();
-		return users;
+	public List<Customer> getCustomers() {
+		Query q = em.createQuery("select c from Customers c");
+		List<Customer> customers = q.getResultList();
+		return customers;
 	}
 
     @Transactional
-    public User save(User user) {
-    	if (user.getId() != null) {
-    		user = em.merge(user);
+    public Customer addCustomer(Customer customer) {
+    	if (customer.getCustID() != null) {
+    		customer = em.merge(customer);
     	} else {
-        	em.persist(user);
+        	em.persist(customer);
     	}
-    	return user;
+    	return customer;
     }
 	
 
 	@Transactional
-	public void deleteUser(Long id) {
+	public void deleteCustomer(Long id) {
 
-		User cm = em.find(User.class, id);
+		Customer cm = em.find(Customer.class, id);
 		if (cm != null) {
 			em.remove(cm);
 		}
 	}
 	
     @Transactional
-    public void deleteAllUsers() {
+    public void deleteAllCustomers() {
     	try {
 
-    	    Query del = em.createQuery("DELETE FROM Tuser WHERE id >= 0");
+    	    Query del = em.createQuery("DELETE * FROM Customers");
     	    del.executeUpdate();
 
     	} catch (SecurityException | IllegalStateException  e) {

@@ -2,7 +2,7 @@
  *                                                                        *
  * This software is governed by the GPL version 2.                        *
  *                                                                        *
- * Copyright: Joerg Friedrich, University of Applied Sciences Esslingen   *
+ * Copyright: Jay Imort, Kyle Mezger                                      *
  *                                                                        *
  * $Id:$
  *                                                                        *
@@ -20,66 +20,52 @@ import javax.transaction.Transactional;
 
 import org.jboss.logging.Logger;
 
-import de.hse.swa.jodel.orm.model.User;
+import de.hse.swa.jodel.orm.model.Contract;
 
 @ApplicationScoped
-public class UserDao {
+public class ContractDao {
 
     @Inject
     EntityManager em;
 
-	private static final Logger LOGGER = Logger.getLogger(UserDao.class);
+	private static final Logger LOGGER = Logger.getLogger(ContractDao.class);
 	
-	public User getUser(Long id) {
-		return em.find(User.class, id);
+	public Contract getContract(Long id) {
+		return em.find(Contract.class, id);
 	}
 	
-	public User login(String username, String password) {
-		try {
-			LOGGER.debug("Checking for user name and password");
-			return (User) em.createQuery("SELECT u FROM User u WHERE u.username=:username AND "
-					+ "u.password=:password")
-					.setParameter("username", username)
-					.setParameter("password", password).getSingleResult();
 
-		} catch(NoResultException e) {
-			User u = new User();
-			u.setId(0L);
-			return u;
-		}
-	}
-
-	public List<User> getUsers() {
-		Query q = em.createQuery("select c from Tuser c");
-		List<User> users = q.getResultList();
-		return users;
+	public List<Contract> getContracts() {
+		Query q = em.createQuery("select c from Contracts c");
+		List<Contract> contracts = q.getResultList();
+		return contracts;
 	}
 
     @Transactional
-    public User save(User user) {
-    	if (user.getId() != null) {
-    		user = em.merge(user);
+    public Contract addContract(Contract contract) {
+    	if (contract.getContID() != null) {
+    		contract = em.merge(contract);
     	} else {
-        	em.persist(user);
+        	em.persist(contract);
     	}
-    	return user;
+    	return contract;
     }
 	
 
 	@Transactional
-	public void deleteUser(Long id) {
+	public void deleteContract(Long id) {
 
-		User cm = em.find(User.class, id);
+		Contract cm = em.find(Contract.class, id);
 		if (cm != null) {
 			em.remove(cm);
 		}
 	}
 	
     @Transactional
-    public void deleteAllUsers() {
+    public void deleteAllContracts() {
     	try {
 
-    	    Query del = em.createQuery("DELETE FROM Tuser WHERE id >= 0");
+    	    Query del = em.createQuery("DELETE * FROM Contracts");
     	    del.executeUpdate();
 
     	} catch (SecurityException | IllegalStateException  e) {
