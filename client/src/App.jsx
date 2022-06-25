@@ -39,7 +39,7 @@ class App extends React.Component {
 		if (this.state.loggedIn) {
 			return (
 				<div>
-					<Button component={Link} to="/customer" variant="contained" color="primary" >Customers</Button>
+					<Button component={Link} to="/" variant="contained" color="primary" >Customers</Button>
 					<Button component={Link} to="/contracts" variant="contained" color="primary" >Contracts</Button>
 					<Button component={Link} to="/user" variant="contained" color="primary" >Users</Button>
 					<Routes>
