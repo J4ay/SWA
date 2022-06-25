@@ -2,6 +2,8 @@ import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 
 import PostList from './PostList'
+import { Button } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
 	center: {
@@ -14,29 +16,24 @@ const styles = theme => ({
 	}
 });
 
-class Posts extends React.Component {
+class Home extends React.Component {
 
 	constructor(props) {
 		super(props);
 	    this.state = {	  
-            data: [],
-            ownPosts: false,
-            noPosition: false,
-            loadingPosts: true
+            currentTab: 'Customers',
 		};		
 	}
-	
-  
 	render() {
 		const { classes } = this.props;
-		return (
-		<div className={classes.center}>
-			<h1>Here goes the posts list plus buttons for adding and editing posts</h1>
-			<PostList></PostList>
-	    </div>
-		);
+			return (
+			<div className={classes.center}>
+				<h1>Home </h1>
+				<PostList></PostList>
+			</div>
+			);
 	}
 }
 
-export default withStyles(styles)(Posts);
+export default withStyles(styles)(Home);
 
