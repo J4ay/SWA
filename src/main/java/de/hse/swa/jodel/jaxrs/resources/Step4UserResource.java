@@ -14,7 +14,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
+import de.hse.swa.jodel.orm.dao.ContractDao;
+import de.hse.swa.jodel.orm.dao.CustomerDao;
 import de.hse.swa.jodel.orm.dao.UserDao;
+import de.hse.swa.jodel.orm.model.Contract;
+import de.hse.swa.jodel.orm.model.Customer;
 import de.hse.swa.jodel.orm.model.User;
 import io.vertx.core.http.HttpServerRequest;
 
@@ -24,6 +28,12 @@ public class Step4UserResource {
 
     @Inject
     UserDao userDao;
+
+    @Inject
+    CustomerDao customerDao;
+
+    @Inject
+    ContractDao contractDao;
     
     @Context
     HttpServerRequest request;
@@ -34,6 +44,35 @@ public class Step4UserResource {
         return userDao.getUsers();
     }
     
+    @GET
+    @Path("customer")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Customer> getCustomers() {
+        return customerDao.getCustomers();
+    }
+
+    @GET
+    @Path("contract")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Contract> getContracts() {
+        return contractDao.getContracts();
+    }
+
+
+    @GET
+    @Path("customer/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Customer getCustomer(Long id) {
+        return customerDao.getCustomer(id);
+    }
+
+    @GET
+    @Path("contract/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Contract getContract(Long id) {
+        return contractDao.getContract(id);
+    }
+
     @GET
     @Path("id")
     @Produces(MediaType.APPLICATION_JSON)
@@ -65,6 +104,46 @@ public class Step4UserResource {
         return userDao.save(user);
     }
     
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Customer addCustomer(Customer customer) {
+        return customerDao.addCustomer(customer);
+    } 
+    
+    /**
+     * Create a new user
+     * @param user
+     * @return the new user
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Customer updateCustomer(Customer customer) {
+        return customerDao.addCustomer(customer);
+    }
+
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Contract addContract(Contract contract) {
+        return contractDao.addContract(contract);
+    } 
+    
+    /**
+     * Create a new user
+     * @param user
+     * @return the new user
+     */
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Contract updateContract(Contract contract) {
+        return contractDao.addContract(contract);
+    }
+
     /**
      * Create a new user
      * @param user
