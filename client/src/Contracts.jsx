@@ -2,8 +2,10 @@ import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 
 import PostList from './PostList'
-import { Button } from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
+
+import HttpService from "./HttpService";
 
 const styles = theme => ({
 	center: {
@@ -21,19 +23,33 @@ class Contracts extends React.Component {
 	constructor(props) {
 		super(props);
 	    this.state = {	  
-            currentTab: 'Customers',
-		};		
+			contracts: [],
+		};
 	}
+
+
+
+	componentDidMount() {
+		HttpService.getContracts().then(res => {
+			this.setState({ contracts : res });
+		});
+	}
+
+
 	render() {
 		const { classes } = this.props;
-			return (
+		return (
 			<div className={classes.center}>
+				<Button variant="contained" color="primary" >Add Contract </Button>
 				<h1>Contracts </h1>
-				<PostList></PostList>
+
+				{this.state.contracts&& this.state.contracts.map((con, i) =>
+				 <Box key={i}>{con.contID}</Box>
+				)}
+
 			</div>
-			);
+		);
 	}
 }
-
 export default withStyles(styles)(Contracts);
 
