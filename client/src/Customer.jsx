@@ -16,14 +16,32 @@ const styles = theme => ({
 	}
 });
 
-class Home extends React.Component {
+class Customer extends React.Component {
 
 	constructor(props) {
 		super(props);
 	    this.state = {	  
-            currentTab: 'Customers',
+            customers: [],
 		};		
 	}
+
+	getCustomers() {
+		fetch( "localhost:8080" + "/users", {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': '*/*',
+            },
+            method: 'get',
+        }).then(function(response) {
+			console.dir(response.json());
+			return response.json();
+		})
+	}
+
+	componentDidMount() {
+		this.getCustomers();
+	}
+	
   
 	render() {
 		const { classes } = this.props;
@@ -36,5 +54,5 @@ class Home extends React.Component {
 	}
 }
 
-export default withStyles(styles)(Home);
+export default withStyles(styles)(Customer);
 

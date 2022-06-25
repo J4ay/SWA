@@ -16,7 +16,7 @@ const styles = theme => ({
 	}
 });
 
-class Home extends React.Component {
+class Contracts extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -35,5 +35,5 @@ class Home extends React.Component {
 	}
 }
 
-export default withStyles(styles)(Home);
+export default withStyles(styles)(Contracts);
 
