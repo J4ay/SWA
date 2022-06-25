@@ -2,8 +2,10 @@ import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 
 import PostList from './PostList'
-import { Button } from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
+
+import HttpService from "./HttpService";
 
 const styles = theme => ({
 	center: {
@@ -20,55 +22,37 @@ class Customer extends React.Component {
 
 	constructor(props) {
 		super(props);
-	    this.state = {	  
-            customers: [],
-		};		
+		this.state = {
+			customers: [],
+		};
 	}
-	
-	status( response ) {
-        if ( response.status >= 200 && response.status < 300 ) {
-            return Promise.resolve( response )
-        } else {
-            return Promise.reject( new Error( response.statusText ) )
-        }
-    }
 
-	processData = ( data ) => {
-		console.log( "processData", data );
-		let tid = data.id;
-		if ( tid !== 0 ) {
-		}
-    }
 
-	getCustomers() {
-        fetch( "http://localhost:8080/customer", {
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            method: 'get',
-        })
-		.then( this.status )
-		.then( function(response) { return response.json() } )
-		.then( this.processData )
-		.catch( function( error ) {
-			console.log( 'Request failed', error );
-		});
-	}
 
 	componentDidMount() {
+		HttpService.getCustomers().then(res => {
+			this.setState({ customers : res });
+		});
+		// console.log(this.state.customers);
+		// if (this.state.customers.length === 0) {
+		// 	this.state.customers = this.getCustomers();
+		// }
 	}
-	
-  
+
+
 	render() {
 		const { classes } = this.props;
-			return (
+		return (
 			<div className={classes.center}>
-				<Button variant="contained" color="primary" onClick={()=>{this.getCustomers();
-				}}>Add Customer </Button>
+				<Button variant="contained" color="primary" >Add Customer </Button>
 				<h1>Customers </h1>
+
+				{this.state.customers&& this.state.customers.map((cus, i) =>
+				 <Box key={i}>{cus.name}</Box>
+				)}
+
 			</div>
-			);
+		);
 	}
 }
 
