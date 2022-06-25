@@ -50,7 +50,7 @@ public class UserDao {
 	}
 
 	public List<User> getUsers() {
-		Query q = em.createQuery("select c from Tuser c");
+		Query q = em.createQuery("select c from User c");
 		List<User> users = q.getResultList();
 		return users;
 	}

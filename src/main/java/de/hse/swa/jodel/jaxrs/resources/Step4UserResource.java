@@ -23,7 +23,7 @@ import de.hse.swa.jodel.orm.model.User;
 import io.vertx.core.http.HttpServerRequest;
 
 @RequestScoped
-@Path("/step4/users")
+@Path("/")
 public class Step4UserResource {
 
     @Inject
@@ -39,6 +39,7 @@ public class Step4UserResource {
     HttpServerRequest request;
 
     @GET
+    @Path("/users")
     @Produces(MediaType.APPLICATION_JSON)
     public List<User> getUsers() {
         return userDao.getUsers();
@@ -74,7 +75,7 @@ public class Step4UserResource {
     }
 
     @GET
-    @Path("id")
+    @Path("users/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public User getUser(Long id) {
         return userDao.getUser(id);
@@ -86,6 +87,7 @@ public class Step4UserResource {
      * @return the updated user
      */
     @PUT
+    @Path("users")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public User addUser(User user) {
@@ -98,6 +100,7 @@ public class Step4UserResource {
      * @return the new user
      */
     @POST
+    @Path("users")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public User updateUser(User user) {
@@ -106,6 +109,7 @@ public class Step4UserResource {
     
 
     @PUT
+    @Path("customer")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Customer addCustomer(Customer customer) {
@@ -118,6 +122,7 @@ public class Step4UserResource {
      * @return the new user
      */
     @POST
+    @Path("customer")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Customer updateCustomer(Customer customer) {
@@ -126,6 +131,7 @@ public class Step4UserResource {
 
 
     @PUT
+    @Path("contract")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Contract addContract(Contract contract) {
@@ -138,6 +144,7 @@ public class Step4UserResource {
      * @return the new user
      */
     @POST
+    @Path("contract")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Contract updateContract(Contract contract) {
@@ -159,6 +166,7 @@ public class Step4UserResource {
     
     
     @DELETE
+    @Path("users/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public void removeAllUsers() {
     	userDao.deleteAllUsers();

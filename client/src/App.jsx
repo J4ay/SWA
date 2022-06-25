@@ -20,7 +20,7 @@ const styles = theme => ({
 	},
 });
 
-const theUrl = "http://localhost:8080/step4/";
+const theUrl = "http://localhost:8080/";
 
 class App extends React.Component {
 

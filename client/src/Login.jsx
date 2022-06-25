@@ -88,7 +88,7 @@ class Login extends React.Component {
 
 	handleLoginSubmit = ( event ) => {
         var formdata = JSON.stringify( this.state );
-        fetch( this.props.url + "users/login", {
+        fetch( this.props.url + "/login", {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
