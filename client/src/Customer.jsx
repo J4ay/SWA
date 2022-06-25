@@ -29,8 +29,8 @@ class Home extends React.Component {
 		const { classes } = this.props;
 			return (
 			<div className={classes.center}>
+				<Button variant="contained" color="primary" >Add Customer </Button>
 				<h1>Customers </h1>
-				<PostList></PostList>
 			</div>
 			);
 	}
