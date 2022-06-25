@@ -48,7 +48,7 @@ class Login extends React.Component {
 			password: '',
 			username: '',
 			showPassword: false,
-			loginButtonDisabled: true,
+			loginButtonDisabled: false,
 		};		
 	}
 	
@@ -56,11 +56,11 @@ class Login extends React.Component {
 	const username = this.state.username;
 	  if (event.target.id==="username") {
 		this.setState({username: event.target.value});
-		if (username !== null && username.length < 2) {
+		/* if (username !== null && username.length < 2) {
 			this.setState({loginButtonDisabled: true });
 		} else {
 			this.setState({loginButtonDisabled: false });
-		}
+		} */
 	  }
 	  if (event.target.id==="password") {
 		this.setState({password: event.target.value});
