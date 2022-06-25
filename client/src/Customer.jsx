@@ -1,9 +1,7 @@
 import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 
-import PostList from './PostList'
 import { Box, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
 
 import HttpService from "./HttpService";
 
@@ -33,10 +31,6 @@ class Customer extends React.Component {
 		HttpService.getCustomers().then(res => {
 			this.setState({ customers : res });
 		});
-		// console.log(this.state.customers);
-		// if (this.state.customers.length === 0) {
-		// 	this.state.customers = this.getCustomers();
-		// }
 	}
 
 
