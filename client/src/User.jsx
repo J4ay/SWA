@@ -23,16 +23,34 @@ class User extends React.Component {
 	constructor(props) {
 		super(props);
 	    this.state = {	  
+			dialogIsOpen: false,
+			userId: "",
 			users: [],
 		};
 	}
 
+	deleteUser(id) {
+		HttpService.deleteUser(id).then(res => {
+			this.setState({ users: res });
+		}
+		);
+		//window.location.reload(false);
+	}
 
+	openDialog = (id) => {
+		this.setState({ dialogIsOpen: true });
+		this.setState({ userID: id });
+	  };
+
+	closeDialog = () => {
+		this.setState({ dialogIsOpen: false });
+	};
 
 	componentDidMount() {
 		HttpService.getUsers().then(res => {
 			this.setState({ users : res });
 		});
+		console.dir(this.state.users);
 	}
 
 
@@ -41,10 +59,19 @@ class User extends React.Component {
 		return (
 			<div className={classes.center}>
 				<Button variant="contained" color="primary" >Add User </Button>
-				<h1>users </h1>
+				<h1>Users </h1>
 
-				{this.state.users&& this.state.users.map((use, i) =>
-				 <Box key={i}>{use.username}: {use.firstName}</Box>
+				{this.state.users&& this.state.users.map((user) =>
+				<table style={{background: "lightgray", width:"100%"}}>
+					<tr className="tableRow" key={user.id} style={{background: "lightgray", width:"100%"}}>
+						<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.id}</td>
+						<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.firstName + " " + user.lastName}</td>
+						<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.mail}</td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.deleteUser(user.id)}>Delete</Button></td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDialog(user.id)}>Edit</Button></td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => console.log("Show Details")}>Details</Button></td>
+					</tr>
+				</table>
 				)}
 
 			</div>
