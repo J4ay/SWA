@@ -65,7 +65,7 @@ class User extends React.Component {
 				{this.state.users&& this.state.users.map((user) =>
 				<table style={{background: "lightgray", width:"100%"}}>
 					<tr className="tableRow" key={user.id} style={{background: "lightgray", width:"100%"}}>
-						<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.id}</td>
+						<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.customerName}</td>
 						<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.firstName + " " + user.lastName}</td>
 						<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.mail}</td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.deleteUser(user.id)}>Delete</Button></td>
