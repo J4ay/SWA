@@ -66,6 +66,12 @@ class App extends React.Component {
 		this.setState({ filter: filter });
 	}
 
+	adminText = () => {
+		if(this.state.isAdmin) {
+			return "Admin";
+		}
+		return "User";
+	}
 
 	render() {
 		if (this.state.loggedIn) {
@@ -75,7 +81,10 @@ class App extends React.Component {
 					<Button component={Link} to="/contracts" variant="contained" color="primary" onClick={()=>{this.setFilter("")}}>Contracts</Button>
 					<Button component={Link} to="/user" variant="contained" color="primary" onClick={()=>{this.setFilter("")}}>Users</Button>
 					<Button variant="contained" color="secondary" sx={{float:"right"}} onClick={()=>{this.setState({ loggedIn: false })}}>Logout</Button>
-					<IconButton sx={{ mr: 1 }} onClick={() => {this.openDialog(); this.setFilter("")}}><AccountCircleIcon sx={{ fontSize: 32 }} /></IconButton>
+					<IconButton sx={{ mr: 1 }} onClick={() => {this.openDialog(); this.setFilter("")}}>
+						{this.adminText()}
+						<AccountCircleIcon sx={{ fontSize: 40 }} />
+					</IconButton>
 					<Routes>
 						<Route path="/" element={<Customer isAdmin={this.state.isAdmin} setFilter={this.setFilter}/>} />
 						<Route path="/contracts" element={<Contracts isAdmin={this.state.isAdmin} filter={this.state.filter} />} />
