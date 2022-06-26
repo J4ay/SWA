@@ -17,13 +17,15 @@ export default function UserDialog(props) {
 
   //TODO: HttpService.getUser(id)
 
-  const [userCustName, setUserCustName] = React.useState('');
-  const [userFirstName, setUserFirstName] = React.useState('');
-  const [userLastName, setUserLastName] = React.useState('');
-  const [userEmail, setUserEmail] = React.useState('');
-  const [userPhoneNr, setUserPhoneNr] = React.useState('');
-  const [userPhoneNr2, setUserPhoneNr2] = React.useState('');
-  const [isAdmin, setIsAdmin] = React.useState(false);
+  console.log(user);
+
+  const [userCustName, setUserCustName] = React.useState(user.customerName);
+  const [userFirstName, setUserFirstName] = React.useState(user.firstName);
+  const [userLastName, setUserLastName] = React.useState(user.lastName);
+  const [userEmail, setUserEmail] = React.useState(user.mail);
+  const [userPhoneNr, setUserPhoneNr] = React.useState(user.phoneNumber1);
+  const [userPhoneNr2, setUserPhoneNr2] = React.useState(user.phoneNumber1);
+  const [isAdmin, setIsAdmin] = React.useState(user.admin);
   
   const handleCustNameFieldChange = (event) => {
     setUserCustName(event.target.value);
