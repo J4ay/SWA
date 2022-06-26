@@ -10,6 +10,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -63,21 +64,21 @@ public class Step4UserResource {
     @GET
     @Path("customer/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Customer getCustomer(Long id) {
+    public Customer getCustomer(@PathParam("id") Long id) {
         return customerDao.getCustomer(id);
     }
 
     @GET
     @Path("contract/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Contract getContract(Long id) {
+    public Contract getContract(@PathParam("id") Long id) {
         return contractDao.getContract(id);
     }
 
     @GET
     @Path("users/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User getUser(Long id) {
+    public User getUser(@PathParam("id") Long id) {
         return userDao.getUser(id);
     }
 
@@ -175,7 +176,7 @@ public class Step4UserResource {
     @DELETE
     @Path("users/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void removeUserById(Long id) {
+    public void removeUserById(@PathParam("id") Long id) {
     	userDao.deleteUser(id);
     }
 
@@ -183,7 +184,7 @@ public class Step4UserResource {
     @DELETE
     @Path("customer/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void removeCustomerByID(Long id) {
+    public void removeCustomerByID(@PathParam("id") Long id) {
     	customerDao.deleteCustomer(id);
     }
 
@@ -191,7 +192,7 @@ public class Step4UserResource {
     @DELETE
     @Path("contract/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void removeContractById(Long id) {
+    public void removeContractById(@PathParam("id") Long id) {
     	contractDao.deleteContract(id);
     }
 }

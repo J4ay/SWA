@@ -8,9 +8,11 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/material';
 
+function save() {
+}
+
 export default function CustomerDialog(props) {
     const { open, onClose, customer , id} = props;
-  
   
     return (
       <div>
@@ -50,7 +52,7 @@ export default function CustomerDialog(props) {
           </DialogContent>
           <DialogActions>
             <Button onClick={onClose}>Cancel</Button>
-            <Button onClick={onClose}>Save</Button>
+            <Button onClick={this.save()}>Save</Button>
           </DialogActions>
         </Dialog>
       </div>

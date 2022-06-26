@@ -62,7 +62,7 @@ async function createUser(user) {
 
 async function updateCustomer(customer) {
   const response = await axios.put(
-    `http://localhost:8080/customer/${customer.id}`,
+    `http://localhost:8080/customer/`,
     customer
   );
   return response.data;
@@ -70,7 +70,7 @@ async function updateCustomer(customer) {
 
 async function updateContract(contract) {
   const response = await axios.put(
-    `http://localhost:8080/contract/${contract.id}`,
+    `http://localhost:8080/contract/`,
     contract
   );
   return response.data;
@@ -78,7 +78,7 @@ async function updateContract(contract) {
 
 async function updateUser(user) {
   const response = await axios.put(
-    `http://localhost:8080/users/${user.id}`,
+    `http://localhost:8080/users/`,
     user
   );
   return response.data;
