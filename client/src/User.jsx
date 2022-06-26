@@ -25,6 +25,7 @@ class User extends React.Component {
 			dialogIsOpen: false,
 			userId: "",
 			users: [],
+			user: {},
 		};
 	}
 
@@ -34,10 +35,9 @@ class User extends React.Component {
 		});
 	}
 
-	openDialog = (id) => {
-		console.log(id);
+	openDialog = (user) => {
 		this.setState({ dialogIsOpen: true });
-		this.setState({ userId: id });
+		this.setState({ user: user });
 	  };
 
 	closeDialog = () => {
@@ -69,7 +69,7 @@ class User extends React.Component {
 						<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.firstName + " " + user.lastName}</td>
 						<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.mail}</td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.deleteUser(user.id)}>Delete</Button></td>
-						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDialog(user.id)}>Edit</Button></td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDialog(user)}>Edit</Button></td>
 					</tr>
 				</table>);
 				}
@@ -78,7 +78,7 @@ class User extends React.Component {
 				
 				<Button variant="contained" color="primary" >Add User </Button>
 
-				<UserDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.userId} />
+				<UserDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} user={this.state.user} />
 			</div>
 		);}
 		else {
@@ -100,7 +100,6 @@ class User extends React.Component {
 				}
 				})
 				}
-					<UserDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.userId} />
 				</div>
 			);}
 
