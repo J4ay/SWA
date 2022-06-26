@@ -6,6 +6,7 @@ import { Button, Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 import HttpService from "./HttpService";
+import UserDialog from "./ContractDialog";
 
 const styles = theme => ({
 	center: {
@@ -69,11 +70,10 @@ class User extends React.Component {
 						<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.mail}</td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.deleteUser(user.id)}>Delete</Button></td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDialog(user.id)}>Edit</Button></td>
-						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => console.log("Show Details")}>Details</Button></td>
 					</tr>
 				</table>
 				)}
-
+				<UserDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.userId} />
 			</div>
 		);
 	}
