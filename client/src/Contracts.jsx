@@ -65,10 +65,10 @@ class Contracts extends React.Component {
 				{this.state.contracts&& this.state.contracts.map((contract) =>
 				<table style={{background: "lightgray", width:"100%"}}>
 					<tr className="tableRow" key={contract.contID} style={{background: "lightgray", width:"100%"}}>
-						<td className="tableCell" style={{border: "1px solid grey", width: "4%"}}>{contract.contID}</td>
-						<td className="tableCell" style={{border: "1px solid grey", width: "35%"}}>{contract.contractStartDate}</td>
-						<td className="tableCell" style={{border: "1px solid grey", width: "35%"}}>{contract.contractEndDate}</td>
-						<td className="tableCell" style={{border: "1px solid grey", width: "26%"}}>{contract.contractVersion}</td>
+						<td className="tableCell" style={{border: "1px solid grey", width: "20%"}}>{contract.contractCustomer}</td>
+						<td className="tableCell" style={{border: "1px solid grey", width: "30%"}}>{contract.contractStartDate}</td>
+						<td className="tableCell" style={{border: "1px solid grey", width: "30%"}}>{contract.contractEndDate}</td>
+						<td className="tableCell" style={{border: "1px solid grey", width: "20%"}}>{contract.contractVersion}</td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.deleteContract(contract.contID)}>Delete</Button></td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDialog(contract.contID)}>Edit</Button></td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => console.log("Show Details")}>Details</Button></td>

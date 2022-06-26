@@ -31,7 +31,8 @@ INSERT INTO `jodel`.`contracts`
 `contractNumFeature2`,
 `contractNumFeature3`,
 `contractStartDate`,
-`contractVersion`)
+`contractVersion`,
+`contractCustomer`)
 VALUES
 (1,
 "2022-01-01",
@@ -43,7 +44,8 @@ null,
 2,
 3,
 "2022-12-31",
-"0.1.0");
+"0.1.0",
+"LogiComp");
 
 INSERT INTO `jodel`.`contracts`
 (`contID`,
@@ -56,7 +58,8 @@ INSERT INTO `jodel`.`contracts`
 `contractNumFeature2`,
 `contractNumFeature3`,
 `contractStartDate`,
-`contractVersion`)
+`contractVersion`,
+`contractCustomer`)
 VALUES
 (2,
 "2022-04-01",
@@ -68,7 +71,8 @@ null,
 40,
 10,
 "2022-05-05",
-"1.3.2");
+"1.3.2",
+"IT Designers");
 
 INSERT INTO `jodel`.`tuser`
 (
@@ -80,7 +84,8 @@ INSERT INTO `jodel`.`tuser`
 `userMail`,
 `userPhoneNumber1`,
 `userPhoneNumber2`,
-`isAdmin`)
+`isAdmin`,
+`customerName`)
 VALUES
 (
 1,
@@ -91,4 +96,5 @@ VALUES
 "admin@email.com",
 "0123456789",
 "9876543210",
-1);
+1,
+"IT Designers");
