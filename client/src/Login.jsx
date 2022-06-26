@@ -84,6 +84,10 @@ class Login extends React.Component {
 		if ( tid !== 0 ) {
 			this.props.authorized();
 		}
+		let tadmin = data.admin;
+		if ( tadmin === 1 ) {
+			this.props.admin();
+		}
     }
 
 	handleLoginSubmit = ( event ) => {

@@ -28,11 +28,16 @@ class App extends React.Component {
 		super(props);
 		this.state = {
 			loggedIn: false,
+			isAdmin: false,
 		};
 	}
 
 	authorized = () => {
 		this.setState({ loggedIn: true });
+	}
+
+	isAdmin = () => {
+		this.setState({ isAdmin: true });
 	}
 
 	render() {
@@ -44,15 +49,15 @@ class App extends React.Component {
 					<Button component={Link} to="/user" variant="contained" color="primary" >Users</Button>
 					<Button variant="contained" color="secondary" sx={{float:"right"}} onClick={()=>{this.setState({ loggedIn: false })}}>Logout</Button>
 					<Routes>
-						<Route path="/" element={<Customer />} />
-						<Route path="/contracts" element={<Contracts/>} />
-						<Route path="/user" element={<User />} />
+						<Route path="/" element={<Customer isAdmin={this.state.isAdmin}/>} />
+						<Route path="/contracts" element={<Contracts isAdmin={this.state.isAdmin}/>} />
+						<Route path="/user" element={<User isAdmin={this.state.isAdmin}/>} />
 					</Routes>
 				</div>
 			);
 		} else {
 			return (
-				<Login url={theUrl} authorized={this.authorized}></Login>
+				<Login url={theUrl} authorized={this.authorized} isAdmin={this.isAdmin}></Login>
 			);
 		}
 	}
