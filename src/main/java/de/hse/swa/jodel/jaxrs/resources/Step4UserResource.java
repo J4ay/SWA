@@ -166,9 +166,32 @@ public class Step4UserResource {
     
     
     @DELETE
-    @Path("users/{id}")
+    @Path("users")
     @Produces(MediaType.APPLICATION_JSON)
     public void removeAllUsers() {
     	userDao.deleteAllUsers();
+    }
+
+    @DELETE
+    @Path("users/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void removeUserById(Long id) {
+    	userDao.deleteUser(id);
+    }
+
+        
+    @DELETE
+    @Path("customer/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void removeCustomerByID(Long id) {
+    	customerDao.deleteCustomer(id);
+    }
+
+        
+    @DELETE
+    @Path("contract/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public void removeContractById(Long id) {
+    	contractDao.deleteContract(id);
     }
 }
