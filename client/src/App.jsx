@@ -42,6 +42,7 @@ class App extends React.Component {
 					<Button component={Link} to="/" variant="contained" color="primary" >Customers</Button>
 					<Button component={Link} to="/contracts" variant="contained" color="primary" >Contracts</Button>
 					<Button component={Link} to="/user" variant="contained" color="primary" >Users</Button>
+					<Button variant="contained" color="secondary" sx={{float:"right"}} onClick={()=>{this.setState({ loggedIn: false })}}>Logout</Button>
 					<Routes>
 						<Route path="/" element={<Customer />} />
 						<Route path="/contracts" element={<Contracts/>} />
