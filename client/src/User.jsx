@@ -6,7 +6,7 @@ import { Button, Box } from "@material-ui/core";
 import { Link } from "react-router-dom";
 
 import HttpService from "./HttpService";
-import UserDialog from "./ContractDialog";
+import UserDialog from "./UserDialog";
 
 const styles = theme => ({
 	center: {
@@ -39,8 +39,9 @@ class User extends React.Component {
 	}
 
 	openDialog = (id) => {
+		console.log(id);
 		this.setState({ dialogIsOpen: true });
-		this.setState({ userID: id });
+		this.setState({ userId: id });
 	  };
 
 	closeDialog = () => {
