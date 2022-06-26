@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Box, Button } from "@material-ui/core";
 
 import HttpService from "./HttpService";
+import CustomerDialog from "./CustomerDialog";
 
 const styles = theme => ({
 	center: {
@@ -22,9 +23,18 @@ class Customer extends React.Component {
 		super(props);
 		this.state = {
 			customers: [],
+			dialogIsOpen: false,
+			custname: "",
+			custID: "",
 		};
 	}
 
+	deleteCustomer(id) {
+		HttpService.deleteCustomer(id).then(res => {
+			this.setState({ customers: res });
+		}
+		);
+	}
 
 
 	componentDidMount() {
@@ -33,6 +43,15 @@ class Customer extends React.Component {
 		});
 	}
 
+	openDialog = (name,id) => {
+		this.setState({ dialogIsOpen: true });
+		this.setState({ custname: name });
+		this.setState({ custID: id });
+	  };
+	
+	  closeDialog = () => {
+		this.setState({ dialogIsOpen: false });
+	  };
 
 	render() {
 		const { classes } = this.props;
@@ -41,10 +60,20 @@ class Customer extends React.Component {
 				<Button variant="contained" color="primary" >Add Customer </Button>
 				<h1>Customers </h1>
 
-				{this.state.customers&& this.state.customers.map((cus, i) =>
-				 <Box key={i}>{cus.name}</Box>
-				)}
+				{this.state.customers&& this.state.customers.map((customer) =>
+                <table style={{background: "lightgray", width:"100%"}}>
+                    <tr className="tableRow" key={customer.custID} style={{background: "lightgray", width:"100%"}}>
+                        <td className="tableCell" style={{border: "1px solid grey", width: "4%"}}>{customer.custID}</td>
+                        <td className="tableCell" style={{border: "1px solid grey", width: "46%"}}>{customer.address}</td>
+                        <td className="tableCell" style={{border: "1px solid grey", width: "25%"}}>{customer.department}</td>
+                        <td className="tableCell" style={{border: "1px solid grey", width: "25%"}}>{customer.name}</td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.deleteCustomer(customer.custID)}>Delete</Button></td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDialog(customer.name,customer.custID)}>Edit</Button></td>
+					</tr>
+                </table>
+                )}
 
+				<CustomerDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} customer={this.state.custname} id={this.state.custID}/>
 			</div>
 		);
 	}
