@@ -66,6 +66,7 @@ class Contracts extends React.Component {
 						<td className="tableCell" style={{border: "1px solid grey", width: "26%"}}>{contract.contractVersion}</td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.deleteContract(contract.contID)}>Delete</Button></td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDialog(contract.contID)}>Edit</Button></td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => console.log("Show Details")}>Details</Button></td>
 					</tr>
 				</table>
 				)}
