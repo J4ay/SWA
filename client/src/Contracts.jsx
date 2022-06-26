@@ -70,7 +70,6 @@ class Contracts extends React.Component {
 		if(this.props.isAdmin) {
 		return (
 			<div className={classes.center}>
-				<Button variant="contained" color="primary" >Add Contract </Button>
 				<h1>Contracts </h1>
 
 				{this.state.contracts&& this.state.contracts.map(contract =>{
@@ -89,6 +88,9 @@ class Contracts extends React.Component {
 					</tr>
 				</table>);}
 				})}
+				
+				<Button variant="contained" color="primary" >Add Contract </Button>
+
 				<ContractDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.contId}/>
 				<DetailsPopUp open={this.state.detailsIsOpen} onClose={this.closeDetails} contract={this.state.contract}/>
 			</div>
@@ -96,7 +98,6 @@ class Contracts extends React.Component {
 		else{
 			return (
 				<div className={classes.center}>
-					<Button variant="contained" color="primary" >Add Contract </Button>
 					<h1>Contracts </h1>
 	
 					{this.state.contracts&& this.state.contracts.map((contract) =>

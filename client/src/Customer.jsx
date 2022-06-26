@@ -60,7 +60,6 @@ class Customer extends React.Component {
 			if (this.props.isAdmin === true) {
 				return (
 			<div className={classes.center}>
-				<Button variant="contained" color="primary" >Add Customer </Button>
 				<h1>Customers </h1>
 
 				{this.state.customers&& this.state.customers.map((customer) =>
@@ -77,6 +76,8 @@ class Customer extends React.Component {
 					</tr>
                 </table>
                 )}
+				
+				<Button variant="contained" color="primary" >Add Customer </Button>
 
 				<CustomerDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} customer={this.state.custname} id={this.state.custID}/>
 			</div>
@@ -85,7 +86,6 @@ class Customer extends React.Component {
 			else {
 				return (
 				<div className={classes.center}>
-				<Button variant="contained" color="primary" >Add Customer </Button>
 				<h1>Customers </h1>
 
 				{this.state.customers&& this.state.customers.map((customer) =>
