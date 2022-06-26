@@ -83,15 +83,20 @@ public class Contract implements Serializable {
     @Column(name = "contractLicenseKey", length=2048)
     private String contractLicenseKey;
 
+	@Basic(optional=false)
+	@Column(name = "contractCustomer", length=64)
+	private String contractCustomer;
+
 	public Contract() {
 	}
 
-	public Contract(Date startDate, Date endDate, String ip1, String version, String licenseKey) {
+	public Contract(Date startDate, Date endDate, String ip1, String version, String licenseKey, String customer) {
 		this.contractStartDate = startDate;
 		this.contractEndDate = endDate;
 		this.contractIp1 = ip1;
 		this.contractVersion = version;
 		this.contractLicenseKey = licenseKey;
+		this.contractCustomer = customer;
 	}
 
 	
@@ -184,6 +189,13 @@ public class Contract implements Serializable {
 	}
 	public void setContractLicenseKey(String contractLicenseKey) {
 		this.contractLicenseKey = contractLicenseKey;
+	}
+
+	public String getContractCustomer() {
+		return this.contractCustomer;
+	}
+	public void setContractCustomer(String contractCustomer) {
+		this.contractCustomer = contractCustomer;
 	}
 
 	@Override

@@ -71,16 +71,21 @@ public class User implements Serializable {
 	@Column(name = "isAdmin")
 	private boolean isAdmin;
 
+	@Basic(optional = false)
+	@Column(name = "customerName")
+	private String customerName;
+
 	public User() {
 	}
 
-	public User(String name, String lastName, String loginName, String password, String mail, String phoneNumber1, boolean isAdmin) {
+	public User(String name, String lastName, String loginName, String password, String mail, String phoneNumber1, boolean isAdmin, String customerName) {
 		this.userFirstName = name;
 		this.userLastName = lastName;
 		this.username = loginName;
 		this.userMail = mail;
 		this.userPhoneNumber1 = phoneNumber1;
 		this.isAdmin = isAdmin;
+		this.customerName = customerName;
 	}
 
 	
@@ -150,6 +155,13 @@ public class User implements Serializable {
 	}
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+
+	public String getCustomerName() {
+		return this.customerName;
+	}
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
 	@Override
