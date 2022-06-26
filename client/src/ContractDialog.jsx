@@ -6,27 +6,24 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { Box } from '@mui/material';
 
-export default function UserDialog() {
-  const [open, setOpen] = React.useState(false);
+function save() {
+}
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+export default function UserDialog(props) {
+  const { open, onClose , id} = props;
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen} />
-      <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Contract Details {contract}</DialogTitle>
+      <Dialog open={open} onClose={onClose}>
+        <DialogTitle>Contract Details {id}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-
-          </DialogContentText>
+        <Box
+          component="form"
+          sx={{
+            '& .MuiTextField-root': { m: 1, width: '25ch' },
+          }}>
           <TextField
             autoFocus
             margin="dense"
@@ -112,10 +109,12 @@ export default function UserDialog() {
             type="licenseKey"
             variant="standard"
           />
+          </Box>
+
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Save</Button>
+          <Button onClick={onClose}>Cancel</Button>
+          <Button onClick={this.save()}>Save</Button>
         </DialogActions>
       </Dialog>
     </div>
