@@ -34,7 +34,7 @@ class App extends React.Component {
 			isAdmin: false,
 			userid: "",
 			dialogIsOpen: false,
-			userFilter: "",
+			filter: "",
 		};
 	}
 
@@ -62,8 +62,8 @@ class App extends React.Component {
 		this.setState({ userid: id });
 	}
 
-	setUserFilter = (filter) => {
-		this.setState({ userFilter: filter });
+	setFilter = (filter) => {
+		this.setState({ filter: filter });
 	}
 
 
@@ -71,15 +71,15 @@ class App extends React.Component {
 		if (this.state.loggedIn) {
 			return (
 				<div>
-					<Button component={Link} to="/" variant="contained" color="primary" onClick={()=>{this.setUserFilter("")}}>Customers</Button>
-					<Button component={Link} to="/contracts" variant="contained" color="primary" onClick={()=>{this.setUserFilter("")}}>Contracts</Button>
-					<Button component={Link} to="/user" variant="contained" color="primary" onClick={()=>{this.setUserFilter("")}}>Users</Button>
+					<Button component={Link} to="/" variant="contained" color="primary" onClick={()=>{this.setFilter("")}}>Customers</Button>
+					<Button component={Link} to="/contracts" variant="contained" color="primary" onClick={()=>{this.setFilter("")}}>Contracts</Button>
+					<Button component={Link} to="/user" variant="contained" color="primary" onClick={()=>{this.setFilter("")}}>Users</Button>
 					<Button variant="contained" color="secondary" sx={{float:"right"}} onClick={()=>{this.setState({ loggedIn: false })}}>Logout</Button>
-					<IconButton sx={{ mr: 1 }} onClick={() => {this.openDialog(); this.setUserFilter("")}}><AccountCircleIcon sx={{ fontSize: 32 }} /></IconButton>
+					<IconButton sx={{ mr: 1 }} onClick={() => {this.openDialog(); this.setFilter("")}}><AccountCircleIcon sx={{ fontSize: 32 }} /></IconButton>
 					<Routes>
-						<Route path="/" element={<Customer isAdmin={this.state.isAdmin} setUserFilter={this.setUserFilter}/>} />
-						<Route path="/contracts" element={<Contracts isAdmin={this.state.isAdmin}/>} />
-						<Route path="/user" element={<User isAdmin={this.state.isAdmin} userFilter={this.state.userFilter} setUserFilter={this.setUserFilter}/>} />
+						<Route path="/" element={<Customer isAdmin={this.state.isAdmin} setFilter={this.setFilter}/>} />
+						<Route path="/contracts" element={<Contracts isAdmin={this.state.isAdmin} filter={this.state.filter} />} />
+						<Route path="/user" element={<User isAdmin={this.state.isAdmin} filter={this.state.filter} />} />
 					</Routes>
 					<UserDialogSelf open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.userid} />
 				</div>

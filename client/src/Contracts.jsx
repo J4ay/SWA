@@ -33,9 +33,7 @@ class Contracts extends React.Component {
 	deleteContract(id) {
 		HttpService.deleteContract(id).then(res => {
 			this.setState({ contracts: res });
-		}
-		);
-		//window.location.reload(false);
+		});
 	}
 
 	openDialog = (id) => {
@@ -63,7 +61,10 @@ class Contracts extends React.Component {
 				<Button variant="contained" color="primary" >Add Contract </Button>
 				<h1>Contracts </h1>
 
-				{this.state.contracts&& this.state.contracts.map((contract) =>
+				{this.state.contracts&& this.state.contracts.map(contract =>{
+				if(this.props.filter !== contract.contractCustomer && this.props.filter !== "") {return(<div></div>);}
+				else {
+					return(
 				<table style={{background: "lightgray", width:"100%"}}>
 					<tr className="tableRow" key={contract.contID} style={{background: "lightgray", width:"100%"}}>
 						<td className="tableCell" style={{border: "1px solid grey", width: "20%"}}>{contract.contractCustomer}</td>
@@ -74,8 +75,8 @@ class Contracts extends React.Component {
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDialog(contract.contID)}>Edit</Button></td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => console.log("Show Details")}>Details</Button></td>
 					</tr>
-				</table>
-				)}
+				</table>);}
+				})}
 				<ContractDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.contId}/>
 			</div>
 		);}

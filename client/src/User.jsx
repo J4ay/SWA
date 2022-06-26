@@ -63,7 +63,7 @@ class User extends React.Component {
 				<h1>Users </h1>
 
 				{this.state.users&& this.state.users.map(user => {
-				if(this.props.userFilter !== user.customerName && this.props.userFilter !== "") {return(<div></div>);}
+				if(this.props.filter !== user.customerName && this.props.filter !== "") {return(<div></div>);}
 				else {  
 				return (
 				<table style={{background: "lightgray", width:"100%"}}>
