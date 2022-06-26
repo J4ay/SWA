@@ -78,10 +78,10 @@ public class Customer implements Serializable {
 	}
 	
 	public String getAddress() {
-		return this.department;
+		return this.address;
 	}
-	public void setAddress(String department) {
-		this.department = department;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	@Override

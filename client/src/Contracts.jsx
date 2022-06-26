@@ -23,10 +23,24 @@ class Contracts extends React.Component {
 	constructor(props) {
 		super(props);
 	    this.state = {	  
+			dialogIsOpen: false,
+			contId: "",
 			contracts: [],
 		};
 	}
 
+	deleteContract(id) {
+		HttpService.deleteContract(id).then(res => {
+			this.setState({ contracts: res });
+		}
+		);
+		//window.location.reload(false);
+	}
+
+	openDialog = (id) => {
+		this.setState({ dialogIsOpen: true });
+		this.setState({ contID: id });
+	  };
 
 
 	componentDidMount() {
@@ -43,8 +57,17 @@ class Contracts extends React.Component {
 				<Button variant="contained" color="primary" >Add Contract </Button>
 				<h1>Contracts </h1>
 
-				{this.state.contracts&& this.state.contracts.map((con, i) =>
-				 <Box key={i}>{con.contID}</Box>
+				{this.state.contracts&& this.state.contracts.map((contract) =>
+				<table style={{background: "lightgray", width:"100%"}}>
+					<tr className="tableRow" key={contract.contID} style={{background: "lightgray", width:"100%"}}>
+						<td className="tableCell" style={{border: "1px solid grey", width: "4%"}}>{contract.contID}</td>
+						<td className="tableCell" style={{border: "1px solid grey", width: "35%"}}>{contract.contractStartDate}</td>
+						<td className="tableCell" style={{border: "1px solid grey", width: "35%"}}>{contract.contractEndDate}</td>
+						<td className="tableCell" style={{border: "1px solid grey", width: "26%"}}>{contract.contractVersion}</td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.deleteContract(contract.contID)}>Delete</Button></td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDialog(contract.contID)}>Edit</Button></td>
+					</tr>
+				</table>
 				)}
 
 			</div>
