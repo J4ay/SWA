@@ -75,9 +75,9 @@ async function updateContract(contract) {
   return response.data;
 }
 
-async function updateUser(id, userCustName,userFirstName, userLastName, userEmail, userPhoneNr, userPhoneNr2, isAdmin) {
+async function updateUser(id, username, password, userFirstName, userLastName, userEmail, userPhoneNr, userPhoneNr2, isAdmin, userCustName) {
   const response = await axios.post(
-    `http://localhost:8080/users/${id}/${userCustName}/${userFirstName}/${userLastName}/${userEmail}/${userPhoneNr}/${userPhoneNr2}/${isAdmin}`
+    `http://localhost:8080/users/${id}/${username}/${password}/${userFirstName}/${userLastName}/${userEmail}/${userPhoneNr}/${userPhoneNr2}/${isAdmin}/${userCustName}`
   );
   return response.data;
 }
