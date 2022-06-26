@@ -52,7 +52,7 @@ export default function CustomerDialog(props) {
           </DialogContent>
           <DialogActions>
             <Button onClick={onClose}>Cancel</Button>
-            <Button onClick={this.save()}>Save</Button>
+            <Button onClick={onClose}>Save</Button>
           </DialogActions>
         </Dialog>
       </div>

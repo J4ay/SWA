@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PostList from './PostList'
 import { Box, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import ContractDialog from './ContractDialog'
 
 import HttpService from "./HttpService";
 
@@ -42,6 +43,10 @@ class Contracts extends React.Component {
 		this.setState({ contID: id });
 	  };
 
+	closeDialog = () => {
+		this.setState({ dialogIsOpen: false });
+	};
+
 
 	componentDidMount() {
 		HttpService.getContracts().then(res => {
@@ -70,7 +75,7 @@ class Contracts extends React.Component {
 					</tr>
 				</table>
 				)}
-
+				<ContractDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.contId}/>
 			</div>
 		);
 	}
