@@ -98,3 +98,28 @@ VALUES
 "9876543210",
 1,
 "IT Designers");
+
+INSERT INTO `jodel`.`tuser`
+(
+`id`,
+`username`,
+`password`,
+`userFirstName`,
+`userLastName`,
+`userMail`,
+`userPhoneNumber1`,
+`userPhoneNumber2`,
+`isAdmin`,
+`customerName`)
+VALUES
+(
+2,
+"kyle",
+"123",
+"Kyle",
+"Mezger",
+"kyle@email.com",
+"987654321",
+"123456789",
+0,
+"LogiComp");
