@@ -16,48 +16,58 @@ export default function UserDialog(props) {
   const { open, onClose , user } = props;
 
   //TODO: HttpService.getUser(id)
+  //TODO: ADD enable only when non optional fields are filled
+  //TODO: pwd username sollen geändert werden können
+  //TODO: userdialogself nur pwd
 
-  console.log(user);
-
-  const [userCustName, setUserCustName] = React.useState(user.customerName);
-  const [userFirstName, setUserFirstName] = React.useState(user.firstName);
-  const [userLastName, setUserLastName] = React.useState(user.lastName);
-  const [userEmail, setUserEmail] = React.useState(user.mail);
-  const [userPhoneNr, setUserPhoneNr] = React.useState(user.phoneNumber1);
-  const [userPhoneNr2, setUserPhoneNr2] = React.useState(user.phoneNumber1);
-  const [isAdmin, setIsAdmin] = React.useState(user.admin);
+  var userCustName = user.customerName;
+  var userFirstName= user.firstName;
+  var userLastName= user.lastName;
+  var userEmail= user.mail;
+  var userPhoneNr = user.phoneNumber1;
+  var userPhoneNr2 = user.phoneNumber1;
+  var isAdmin = user.admin;
   
   const handleCustNameFieldChange = (event) => {
-    setUserCustName(event.target.value);
+    userCustName = event.target.value;
   }
 
   const handleFirstNameFieldChange = (event) => {
-    setUserFirstName(event.target.value);
+    userFirstName = event.target.value;
   }
 
   const handleLastNameFieldChange = (event) => {
-    setUserLastName(event.target.value);
+    userLastName = event.target.value;
   }
 
   const handleEmailFieldChange = (event) => {
-    setUserEmail(event.target.value);
+    userEmail = event.target.value;
   }
 
   const handlePhoneNrFieldChange = (event) => {
-    setUserPhoneNr(event.target.value);
+    userPhoneNr = event.target.value;
   }
 
   const handlePhoneNr2FieldChange = (event) => {
-    setUserPhoneNr2(event.target.value);
+    userPhoneNr2 = event.target.value;
   }
 
   const handleAdminCheckboxChange = (event) => {
-    setIsAdmin(event.target.checked);
+    isAdmin = event.target.checked;
   }
 
   const onSave = () => {
-    console.log(user.id + user.username + user.password + userFirstName + userLastName + userEmail + userPhoneNr + userPhoneNr2 + isAdmin + userCustName);
-    console.log("Nr 1: " + userPhoneNr);
+    console.log("Id: " + user.id);
+    console.log("Username: " + user.username);
+    console.log("Password: " + user.password);
+    console.log("FirstName: " + userFirstName);
+    console.log("LastName: " + userLastName);
+    console.log("Email: " + userEmail);
+    console.log("PhoneNr: " + userPhoneNr);
+    console.log("PhoneNr2: " + userPhoneNr2);
+    console.log("IsAdmin: " + isAdmin);
+    console.log("CustName: " + userCustName);
+
     HttpService.updateUser(user.id, user.username, user.password, userFirstName, userLastName, userEmail, userPhoneNr, userPhoneNr2, isAdmin, userCustName);
 
     onClose();
@@ -131,7 +141,7 @@ export default function UserDialog(props) {
               onChange={(event) => handlePhoneNr2FieldChange(event)}
             />
             <FormGroup>
-          <FormControlLabel checked={user.admin} onChange={(event) => handleAdminCheckboxChange(event)}control={<Checkbox />} label="Is Administrator" />
+          <FormControlLabel control={<Checkbox defaultChecked={isAdmin} onChange={(event) => handleAdminCheckboxChange(event)}/>} label="Is Administrator" />
           </FormGroup>
            </Box>
 
