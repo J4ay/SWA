@@ -1,9 +1,7 @@
 import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 
-import PostList from './PostList'
 import { Box, Button } from "@material-ui/core";
-import { Link } from "react-router-dom";
 import ContractDialog from './ContractDialog'
 
 import HttpService from "./HttpService";
@@ -100,17 +98,20 @@ class Contracts extends React.Component {
 				<div className={classes.center}>
 					<h1>Contracts </h1>
 	
-					{this.state.contracts&& this.state.contracts.map((contract) =>
-					<table style={{background: "lightgray", width:"100%"}}>
-						<tr className="tableRow" key={contract.contID} style={{background: "lightgray", width:"100%"}}>
-							<td className="tableCell" style={{border: "1px solid grey", width: "20%"}}>{contract.contractCustomer}</td>
-							<td className="tableCell" style={{border: "1px solid grey", width: "30%"}}>{contract.contractStartDate}</td>
-							<td className="tableCell" style={{border: "1px solid grey", width: "30%"}}>{contract.contractEndDate}</td>
-							<td className="tableCell" style={{border: "1px solid grey", width: "20%"}}>{contract.contractVersion}</td>
-							<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDetails(contract)}>Details</Button></td>
-						</tr>
-					</table>
-					)}
+					{this.state.contracts&& this.state.contracts.map(contract =>{
+				if(this.props.filter !== contract.contractCustomer && this.props.filter !== "") {return(<div></div>);}
+				else {
+					return(
+				<table style={{background: "lightgray", width:"100%"}}>
+					<tr className="tableRow" key={contract.contID} style={{background: "lightgray", width:"100%"}}>
+						<td className="tableCell" style={{border: "1px solid grey", width: "20%"}}>{contract.contractCustomer}</td>
+						<td className="tableCell" style={{border: "1px solid grey", width: "30%"}}>{contract.contractStartDate}</td>
+						<td className="tableCell" style={{border: "1px solid grey", width: "30%"}}>{contract.contractEndDate}</td>
+						<td className="tableCell" style={{border: "1px solid grey", width: "20%"}}>{contract.contractVersion}</td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDetails(contract)}>Details</Button></td>
+					</tr>
+				</table>);}
+				})}
 					<ContractDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.contId}/>
 					<DetailsPopUp open={this.state.detailsIsOpen} onClose={this.closeDetails} contract={this.state.contract}/>
 				</div>

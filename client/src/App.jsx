@@ -2,7 +2,6 @@ import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 
 import Login from './Login';
-import Home from './Home'
 import Customer from './Customer'
 import User from './User';
 

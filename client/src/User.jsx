@@ -1,9 +1,7 @@
 import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 
-import PostList from './PostList'
 import { Button, Box } from "@material-ui/core";
-import { Link } from "react-router-dom";
 
 import HttpService from "./HttpService";
 import UserDialog from "./UserDialog";
@@ -88,15 +86,20 @@ class User extends React.Component {
 				<div className={classes.center}>
 					<h1>Users </h1>
 	
-					{this.state.users&& this.state.users.map((user) =>
-					<table style={{background: "lightgray", width:"100%"}}>
-						<tr className="tableRow" key={user.id} style={{background: "lightgray", width:"100%" , height:"38px"}}>
-							<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.customerName}</td>
-							<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.firstName + " " + user.lastName}</td>
-							<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.mail}</td>
-						</tr>
-					</table>
-					)}
+					{this.state.users&& this.state.users.map(user => {
+				if(this.props.filter !== user.customerName && this.props.filter !== "") {return(<div></div>);}
+				else {  
+				return (
+				<table style={{background: "lightgray", width:"100%"}}>
+					<tr className="tableRow" key={user.id} style={{background: "lightgray", width:"100%", height:"38px"}}>
+						<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.customerName}</td>
+						<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.firstName + " " + user.lastName}</td>
+						<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.mail}</td>
+					</tr>
+				</table>);
+				}
+				})
+				}
 					<UserDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.userId} />
 				</div>
 			);}
