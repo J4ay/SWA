@@ -33,9 +33,7 @@ class User extends React.Component {
 	deleteUser(id) {
 		HttpService.deleteUser(id).then(res => {
 			this.setState({ users: res });
-		}
-		);
-		//window.location.reload(false);
+		});
 	}
 
 	openDialog = (id) => {
@@ -52,7 +50,7 @@ class User extends React.Component {
 		HttpService.getUsers().then(res => {
 			this.setState({ users : res });
 		});
-		console.dir(this.state.users);
+
 	}
 
 
@@ -64,7 +62,10 @@ class User extends React.Component {
 				<Button variant="contained" color="primary" >Add User </Button>
 				<h1>Users </h1>
 
-				{this.state.users&& this.state.users.map((user) =>
+				{this.state.users&& this.state.users.map(user => {
+				if(this.props.userFilter !== user.customerName && this.props.userFilter !== "") {return(<div></div>);}
+				else {  
+				return (
 				<table style={{background: "lightgray", width:"100%"}}>
 					<tr className="tableRow" key={user.id} style={{background: "lightgray", width:"100%"}}>
 						<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.customerName}</td>
@@ -73,8 +74,10 @@ class User extends React.Component {
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.deleteUser(user.id)}>Delete</Button></td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDialog(user.id)}>Edit</Button></td>
 					</tr>
-				</table>
-				)}
+				</table>);
+				}
+				})
+				}
 				<UserDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.userId} />
 			</div>
 		);}

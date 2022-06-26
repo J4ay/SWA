@@ -5,6 +5,7 @@ import { Box, Button } from "@material-ui/core";
 
 import HttpService from "./HttpService";
 import CustomerDialog from "./CustomerDialog";
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
 	center: {
@@ -71,8 +72,8 @@ class Customer extends React.Component {
                         <td className="tableCell" style={{border: "1px solid grey", width: "25%"}}>{customer.name}</td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.deleteCustomer(customer.custID)}>Delete</Button></td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDialog(customer.name,customer.custID)}>Edit</Button></td>
-						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => console.log("Filter Users by customer name")}>User</Button></td>
-						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => console.log("Filter contracts by customer name")}>Contracts</Button></td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" component={Link} to="/user" onClick={()=>{this.props.setUserFilter(customer.name)}}>User</Button></td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" >Contracts</Button></td>
 					</tr>
                 </table>
                 )}
