@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import ContractDialog from './ContractDialog'
 
 import HttpService from "./HttpService";
+import DetailsPopUp from "./DetailsPopUp";
 
 const styles = theme => ({
 	center: {
@@ -25,8 +26,10 @@ class Contracts extends React.Component {
 		super(props);
 	    this.state = {	  
 			dialogIsOpen: false,
+			detailsIsOpen: false,
 			contId: "",
 			contracts: [],
+			contract: {},
 		};
 	}
 
@@ -43,6 +46,15 @@ class Contracts extends React.Component {
 
 	closeDialog = () => {
 		this.setState({ dialogIsOpen: false });
+	};
+
+	openDetails = (cont) => {
+		this.setState({ detailsIsOpen: true });
+		this.setState({ contract: cont });
+	};
+
+	closeDetails = () => {
+		this.setState({ detailsIsOpen: false });
 	};
 
 
@@ -73,11 +85,12 @@ class Contracts extends React.Component {
 						<td className="tableCell" style={{border: "1px solid grey", width: "20%"}}>{contract.contractVersion}</td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.deleteContract(contract.contID)}>Delete</Button></td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDialog(contract.contID)}>Edit</Button></td>
-						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => console.log("Show Details")}>Details</Button></td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDetails(contract)}>Details</Button></td>
 					</tr>
 				</table>);}
 				})}
 				<ContractDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.contId}/>
+				<DetailsPopUp open={this.state.detailsIsOpen} onClose={this.closeDetails} contract={this.state.contract}/>
 			</div>
 		);}
 		else{
@@ -93,11 +106,12 @@ class Contracts extends React.Component {
 							<td className="tableCell" style={{border: "1px solid grey", width: "30%"}}>{contract.contractStartDate}</td>
 							<td className="tableCell" style={{border: "1px solid grey", width: "30%"}}>{contract.contractEndDate}</td>
 							<td className="tableCell" style={{border: "1px solid grey", width: "20%"}}>{contract.contractVersion}</td>
-							<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => console.log("Show Details")}>Details</Button></td>
+							<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDetails(contract)}>Details</Button></td>
 						</tr>
 					</table>
 					)}
 					<ContractDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.contId}/>
+					<DetailsPopUp open={this.state.detailsIsOpen} onClose={this.closeDetails} contract={this.state.contract}/>
 				</div>
 			);}
 	}
