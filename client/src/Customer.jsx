@@ -55,7 +55,9 @@ class Customer extends React.Component {
 
 	render() {
 		const { classes } = this.props;
-		return (
+
+			if (this.props.isAdmin === true) {
+				return (
 			<div className={classes.center}>
 				<Button variant="contained" color="primary" >Add Customer </Button>
 				<h1>Customers </h1>
@@ -77,7 +79,31 @@ class Customer extends React.Component {
 
 				<CustomerDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} customer={this.state.custname} id={this.state.custID}/>
 			</div>
-		);
+				);}
+				
+			else {
+				return (
+				<div className={classes.center}>
+				<Button variant="contained" color="primary" >Add Customer </Button>
+				<h1>Customers </h1>
+
+				{this.state.customers&& this.state.customers.map((customer) =>
+                <table style={{background: "lightgray", width:"100%"}}>
+                    <tr className="tableRow" key={customer.custID} style={{background: "lightgray", width:"100%"}}>
+                        <td className="tableCell" style={{border: "1px solid grey", width: "4%"}}>{customer.custID}</td>
+                        <td className="tableCell" style={{border: "1px solid grey", width: "46%"}}>{customer.address}</td>
+                        <td className="tableCell" style={{border: "1px solid grey", width: "25%"}}>{customer.department}</td>
+                        <td className="tableCell" style={{border: "1px solid grey", width: "25%"}}>{customer.name}</td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => console.log("Filter Users by customer name")}>User</Button></td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => console.log("Filter contracts by customer name")}>Contracts</Button></td>
+					</tr>
+                </table>
+                )}
+
+				<CustomerDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} customer={this.state.custname} id={this.state.custID}/>
+			</div>
+				);
+			}
 	}
 }
 

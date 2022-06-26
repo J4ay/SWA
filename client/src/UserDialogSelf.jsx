@@ -8,12 +8,13 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/material';
 
-export default function UserDialog(props) {
+export default function UserDialogSelf(props) {
   const { open, onClose , id} = props;
   
   
     return (
       <div>
+        <Button variant="outlined" onClick={onClose} />
         <Dialog open={open} onClose={onClose}>
           <DialogTitle>Edit User {id}</DialogTitle>
           <DialogContent>
