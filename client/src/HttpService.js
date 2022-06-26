@@ -60,10 +60,15 @@ async function createUser(user) {
   return response.data;
 }
 
-async function updateCustomer(customer) {
-  const response = await axios.put(
-    `http://localhost:8080/customer/`,
-    customer
+async function updateCustomer(custId, custName, custDepartment, custAddress) {
+  console.log(custId, custName, custDepartment, custAddress);
+  const response = await axios.post(
+    `http://localhost:8080/customer/${custId}/${custName}/${custDepartment}/${custAddress}`
+    , {headers: {
+      "Acces-Control-Allow-Methods": "POST, PUT, OPTIONS",
+      "Content-Type": "application/json",
+      "Accept": "*/*"
+    }}
   );
   return response.data;
 }

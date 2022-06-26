@@ -7,12 +7,36 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/material';
+import HttpService from './HttpService';
+import Customer from './Customer';
 
 function save() {
 }
 
 export default function CustomerDialog(props) {
     const { open, onClose, customer , id} = props;
+
+    const [custName, setCustName] = React.useState('');
+    const [custDepartment, setCustDepartment] = React.useState('');
+    const [custAddress, setCustAddress] = React.useState('');
+
+    const handleNameFieldChange = (event) => {
+        setCustName(event.target.value);
+    }
+
+    const handleDepartmentFieldChange = (event) => {
+      setCustDepartment(event.target.value);
+    }
+
+    const handleAddressFieldChange = (event) => {
+      setCustAddress(event.target.value);
+    }
+
+    const onSave = () => {
+      HttpService.updateCustomer(id, custName, custDepartment, custAddress);
+
+      onClose();
+    }
   
     return (
       <div>
@@ -33,6 +57,7 @@ export default function CustomerDialog(props) {
               label="Customer Name"
               type="name"
               variant="standard"
+              onChange={(event) => handleNameFieldChange(event)}
             />
             <TextField
               margin="dense"
@@ -40,6 +65,7 @@ export default function CustomerDialog(props) {
               label="Department"
               type="department"
               variant="standard"
+              onChange={(event) => handleDepartmentFieldChange(event)}
             />
             <TextField
               margin="dense"
@@ -47,12 +73,13 @@ export default function CustomerDialog(props) {
               label="Address"
               type="address"
               variant="standard"
+              onChange={(event) => handleAddressFieldChange(event)}
             />
                     </Box>
           </DialogContent>
           <DialogActions>
             <Button onClick={onClose}>Cancel</Button>
-            <Button onClick={onClose}>Save</Button>
+            <Button onClick={onSave}>Save</Button>
           </DialogActions>
         </Dialog>
       </div>

@@ -109,12 +109,13 @@ public class Step4UserResource {
     }
     
 
-    @PUT
-    @Path("customer")
+    @POST
+    @Path("customer/{custId}/{custName}/{custDepartment}/{custAddress}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Customer addCustomer(Customer customer) {
-        return customerDao.addCustomer(customer);
+    public Customer addCustomer(@PathParam("custId") Long custId, @PathParam("custName") String custName, @PathParam("custDepartment") String custDepartment, @PathParam("custAddress") String custAddress ) {
+        Customer customerTemp = new Customer(custId, custName, custDepartment, custAddress);
+        return customerDao.addCustomer(customerTemp);
     } 
     
     /**
