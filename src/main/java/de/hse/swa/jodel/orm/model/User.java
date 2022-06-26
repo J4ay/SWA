@@ -78,15 +78,36 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public User(String name, String lastName, String loginName, String password, String mail, String phoneNumber1, boolean isAdmin, String customerName) {
-		this.userFirstName = name;
-		this.userLastName = lastName;
-		this.username = loginName;
-		this.userMail = mail;
-		this.userPhoneNumber1 = phoneNumber1;
+	public User(Long id, String username, String password, String userFirstName, String userLastName, String userMail,
+			String userPhoneNumber1, String userPhoneNumber2, boolean isAdmin, String customerName) {
+		if(id != null) {
+			this.id = id;
+		}
+		this.username = username;
+		this.password = password;
+		this.userFirstName = userFirstName;
+		this.userLastName = userLastName;
+		this.userMail = userMail;
+		this.userPhoneNumber1 = userPhoneNumber1;
+		this.userPhoneNumber2 = userPhoneNumber2;
 		this.isAdmin = isAdmin;
 		this.customerName = customerName;
 	}
+
+	/* public User(Long id, String userCustName, String userFirstName, String userLastName, String userEmail, String userPhoneNr, String userPhoneNr2, Boolean isAdmin) {
+		this.id = id;
+		this.customerName = userCustName;
+		this.userFirstName = userFirstName;
+		this.userLastName = userLastName;
+		this.userMail = userEmail;
+		this.userPhoneNumber1 = userPhoneNr;
+		this.userPhoneNumber2 = userPhoneNr2;
+		this.isAdmin = isAdmin;
+
+		this.username = "";
+		this.password = "";
+		this.customerName = "";
+		} */
 
 	
 	public Long getId() {

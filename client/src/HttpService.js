@@ -61,14 +61,8 @@ async function createUser(user) {
 }
 
 async function updateCustomer(custId, custName, custDepartment, custAddress) {
-  console.log(custId, custName, custDepartment, custAddress);
   const response = await axios.post(
     `http://localhost:8080/customer/${custId}/${custName}/${custDepartment}/${custAddress}`
-    , {headers: {
-      "Acces-Control-Allow-Methods": "POST, PUT, OPTIONS",
-      "Content-Type": "application/json",
-      "Accept": "*/*"
-    }}
   );
   return response.data;
 }
@@ -81,10 +75,9 @@ async function updateContract(contract) {
   return response.data;
 }
 
-async function updateUser(user) {
-  const response = await axios.put(
-    `http://localhost:8080/users/`,
-    user
+async function updateUser(id, userCustName,userFirstName, userLastName, userEmail, userPhoneNr, userPhoneNr2, isAdmin) {
+  const response = await axios.post(
+    `http://localhost:8080/users/${id}/${userCustName}/${userFirstName}/${userLastName}/${userEmail}/${userPhoneNr}/${userPhoneNr2}/${isAdmin}`
   );
   return response.data;
 }

@@ -7,15 +7,64 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Box } from '@mui/material';
+import HttpService from './HttpService';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 export default function UserDialog(props) {
-  const { open, onClose , id} = props;
+  const { open, onClose , user } = props;
+
+  //TODO: HttpService.getUser(id)
+
+  const [userCustName, setUserCustName] = React.useState('');
+  const [userFirstName, setUserFirstName] = React.useState('');
+  const [userLastName, setUserLastName] = React.useState('');
+  const [userEmail, setUserEmail] = React.useState('');
+  const [userPhoneNr, setUserPhoneNr] = React.useState('');
+  const [userPhoneNr2, setUserPhoneNr2] = React.useState('');
+  const [isAdmin, setIsAdmin] = React.useState(false);
   
+  const handleCustNameFieldChange = (event) => {
+    setUserCustName(event.target.value);
+  }
+
+  const handleFirstNameFieldChange = (event) => {
+    setUserFirstName(event.target.value);
+  }
+
+  const handleLastNameFieldChange = (event) => {
+    setUserLastName(event.target.value);
+  }
+
+  const handleEmailFieldChange = (event) => {
+    setUserEmail(event.target.value);
+  }
+
+  const handlePhoneNrFieldChange = (event) => {
+    setUserPhoneNr(event.target.value);
+  }
+
+  const handlePhoneNr2FieldChange = (event) => {
+    setUserPhoneNr2(event.target.value);
+  }
+
+  const handleAdminCheckboxChange = (event) => {
+    setIsAdmin(event.target.checked);
+  }
+
+  const onSave = () => {
+    console.log(user.id + user.username + user.password + userFirstName + userLastName + userEmail + userPhoneNr + userPhoneNr2 + isAdmin + userCustName);
+    console.log("Nr 1: " + userPhoneNr);
+    HttpService.updateUser(user.id, user.username, user.password, userFirstName, userLastName, userEmail, userPhoneNr, userPhoneNr2, isAdmin, userCustName);
+
+    onClose();
+  }
   
     return (
       <div>
         <Dialog open={open} onClose={onClose}>
-          <DialogTitle>Edit User {id}</DialogTitle>
+          <DialogTitle>Edit User {user.id}</DialogTitle>
           <DialogContent>
           <Box
           component="form"
@@ -26,10 +75,22 @@ export default function UserDialog(props) {
             <TextField
               autoFocus
               margin="dense"
+              id="userCustomer"
+              label="Customer Name"
+              type="sutomerName"
+              variant="standard"
+              defaultValue={user.customerName}
+              onChange={(event) => handleCustNameFieldChange(event)}
+            />
+            <TextField
+              autoFocus
+              margin="dense"
               id="userFirstName"
               label="First Name"
               type="firstName"
               variant="standard"
+              defaultValue={user.firstName}
+              onChange={(event) => handleFirstNameFieldChange(event)}
             />
             <TextField
               margin="dense"
@@ -37,6 +98,8 @@ export default function UserDialog(props) {
               label="Last Name"
               type="lastName"
               variant="standard"
+              defaultValue={user.lastName}
+              onChange={(event) => handleLastNameFieldChange(event)}
             />
             <TextField
               margin="dense"
@@ -44,6 +107,8 @@ export default function UserDialog(props) {
               label="E-Mail"
               type="email"
               variant="standard"
+              defaultValue={user.mail}
+              onChange={(event) => handleEmailFieldChange(event)}
             />
             <TextField
               margin="dense"
@@ -51,6 +116,8 @@ export default function UserDialog(props) {
               label="Phone (1)"
               type="phoneNr1"
               variant="standard"
+              defaultValue={user.phoneNumber1}
+              onChange={(event) => handlePhoneNrFieldChange(event)}
             />
             <TextField
               margin="dense"
@@ -58,20 +125,18 @@ export default function UserDialog(props) {
               label="Phone (2)"
               type="phoneNr2"
               variant="standard"
+              defaultValue={user.phoneNumber2}
+              onChange={(event) => handlePhoneNr2FieldChange(event)}
             />
-            <TextField
-              margin="dense"
-              id="password"
-              label="Password"
-              type="password"
-              variant="standard"
-            />
+            <FormGroup>
+          <FormControlLabel checked={user.admin} onChange={(event) => handleAdminCheckboxChange(event)}control={<Checkbox />} label="Is Administrator" />
+          </FormGroup>
            </Box>
 
           </DialogContent>
           <DialogActions>
             <Button onClick={onClose}>Cancel</Button>
-            <Button onClick={onClose}>Save</Button>
+            <Button onClick={onSave}>Save</Button>
           </DialogActions>
         </Dialog>
       </div>
