@@ -56,7 +56,7 @@ class Customer extends React.Component {
 	render() {
 		const { classes } = this.props;
 
-			if (this.props.isAdmin) {
+			if (this.props.isAdmin === true) {
 				return (
 			<div className={classes.center}>
 				<Button variant="contained" color="primary" >Add Customer </Button>
@@ -94,6 +94,8 @@ class Customer extends React.Component {
                         <td className="tableCell" style={{border: "1px solid grey", width: "46%"}}>{customer.address}</td>
                         <td className="tableCell" style={{border: "1px solid grey", width: "25%"}}>{customer.department}</td>
                         <td className="tableCell" style={{border: "1px solid grey", width: "25%"}}>{customer.name}</td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => console.log("Filter Users by customer name")}>User</Button></td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => console.log("Filter contracts by customer name")}>Contracts</Button></td>
 					</tr>
                 </table>
                 )}

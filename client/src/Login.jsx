@@ -85,8 +85,8 @@ class Login extends React.Component {
 			this.props.authorized();
 		}
 		let tadmin = data.admin;
-		if ( tadmin === 1 ) {
-			this.props.admin();
+		if ( tadmin === true ) {
+			this.props.isAdmin();
 		}
     }
 
