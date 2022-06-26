@@ -57,6 +57,7 @@ class User extends React.Component {
 
 	render() {
 		const { classes } = this.props;
+		if(this.props.isAdmin) {
 		return (
 			<div className={classes.center}>
 				<Button variant="contained" color="primary" >Add User </Button>
@@ -75,7 +76,26 @@ class User extends React.Component {
 				)}
 				<UserDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.userId} />
 			</div>
-		);
+		);}
+		else {
+			return (
+				<div className={classes.center}>
+					<Button variant="contained" color="primary" >Add User </Button>
+					<h1>Users </h1>
+	
+					{this.state.users&& this.state.users.map((user) =>
+					<table style={{background: "lightgray", width:"100%"}}>
+						<tr className="tableRow" key={user.id} style={{background: "lightgray", width:"100%"}}>
+							<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.customerName}</td>
+							<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.firstName + " " + user.lastName}</td>
+							<td className="tableCell" style={{border: "1px solid grey", width: "33%"}}>{user.mail}</td>
+						</tr>
+					</table>
+					)}
+					<UserDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.userId} />
+				</div>
+			);}
+
 	}
 }
 export default withStyles(styles)(User);
