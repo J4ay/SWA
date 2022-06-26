@@ -40,6 +40,10 @@ class App extends React.Component {
 		this.setState({ isAdmin: true });
 	}
 
+	notAdmin = () => {
+		this.setState({ isAdmin: false });
+	}
+
 	render() {
 		if (this.state.loggedIn) {
 			return (
@@ -57,7 +61,7 @@ class App extends React.Component {
 			);
 		} else {
 			return (
-				<Login url={theUrl} authorized={this.authorized} isAdmin={this.isAdmin}></Login>
+				<Login url={theUrl} authorized={this.authorized} isAdmin={this.isAdmin} notAdmin={this.notAdmin}></Login>
 			);
 		}
 	}

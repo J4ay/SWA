@@ -88,6 +88,9 @@ class Login extends React.Component {
 		if ( tadmin === true ) {
 			this.props.isAdmin();
 		}
+		else if ( tadmin === false ) {
+			this.props.notAdmin();
+		}
     }
 
 	handleLoginSubmit = ( event ) => {
