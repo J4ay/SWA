@@ -19,8 +19,8 @@ export default function ContractDialog(props) {
   //TODO: get contract from props
   const { open, onClose , contract } = props;
 
-  const [startDate, setStartDate] = React.useState(new Date('2022-08-18T21:11:54'));
-  const [endDate, setEndDate] = React.useState(new Date('2022-08-18T21:11:54'));
+  const [startDate, setStartDate] = React.useState(contract.contractStartDate);
+  const [endDate, setEndDate] = React.useState(contract.contractEndDate);
 
   
 
@@ -102,8 +102,8 @@ export default function ContractDialog(props) {
     console.log("licenseKey: " + licenseKey);
     console.log("contractId: " + contract.contractCustomer);
 
-    var userString1 = user1.toString();
-    var userString2 = user2.toString();
+    //var userString1 = user1.toString();
+    //var userString2 = user2.toString();
     HttpService.updateContract(contract.contID, startDate, endDate, ip1, ip2, ip3, version, feature1, feature2, feature3, user1, user2, licenseKey, contract.contractCustomer)
 
     onClose();

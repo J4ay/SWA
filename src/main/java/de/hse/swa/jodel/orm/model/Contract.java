@@ -72,12 +72,12 @@ public class Contract implements Serializable {
 	private int contractNumFeature3;
 
 	@Basic(optional=true)
-	@Column(name = "contractUser1", length=2048)
-	private User contractUser1;
+	@Column(name = "contractUser1")
+	private Integer contractUser1;
 
 	@Basic(optional=true)
-	@Column(name = "contractUser2", length=2048)
-	private User contractUser2;
+	@Column(name = "contractUser2")
+	private Integer contractUser2;
 
     @Basic(optional=false)
     @Column(name = "contractLicenseKey", length=2048)
@@ -90,7 +90,7 @@ public class Contract implements Serializable {
 	public Contract() {
 	}
 
-	public Contract(Long contID, Date contractStartDate, Date contractEndDate, String contractIp1, String contractIp2, String contractIp3, String contractVersion, int contractNumFeature1, int contractNumFeature2, int contractNumFeature3, User contractUser1, User contractUser2, String contractLicenseKey, String contractCustomer) {
+	public Contract(Long contID, Date contractStartDate, Date contractEndDate, String contractIp1, String contractIp2, String contractIp3, String contractVersion, int contractNumFeature1, int contractNumFeature2, int contractNumFeature3, int contractUser1, int contractUser2, String contractLicenseKey, String contractCustomer) {
 		this.contID = contID;
 		this.contractStartDate = contractStartDate;
 		this.contractEndDate = contractEndDate;
@@ -114,6 +114,8 @@ public class Contract implements Serializable {
 		this.contractVersion = version;
 		this.contractLicenseKey = licenseKey;
 		this.contractCustomer = customer;
+		this.contractUser1 = 0;
+		this.contractUser2 = 0;
 	}
 
 	
@@ -187,17 +189,17 @@ public class Contract implements Serializable {
 		this.contractNumFeature3 = contractNumFeature3;
 	}
 
-	public User getContractUser1() {
+	public Integer getContractUser1() {
 		return this.contractUser1;
 	}
-	public void setContractUser1(User contractUser1) {
+	public void setContractUser1(Integer contractUser1) {
 		this.contractUser1 = contractUser1;
 	}
 
-	public User getContractUser2() {
+	public Integer getContractUser2() {
 		return this.contractUser2;
 	}
-	public void setContractUser2(User contractUser2) {
+	public void setContractUser2(Integer contractUser2) {
 		this.contractUser2 = contractUser2;
 	}
 

@@ -165,10 +165,13 @@ public class Step4UserResource {
         Date startDate = Date.valueOf(contStartDate);
         Date endDate = Date.valueOf(contEndDate);
 
-        User user1 = userDao.getUser(Long.decode(contUserId1));
-        User user2 = userDao.getUser(Long.decode(contUserId2));
+        //User user1 = userDao.getUser(Long.decode(contUserId1));
+        //User user2 = userDao.getUser(Long.decode(contUserId2));
 
-        Contract contractTemp = new Contract(contId, startDate, endDate, contIp1, contIp2, contIp3, contVersion, Integer.valueOf(contNumFeature1), Integer.valueOf(contNumFeature2), Integer.valueOf(contNumFeature3), user1, user2, contLicenseKey, contCustomer);
+        int contUserId1Int = Integer.parseInt(contUserId1); 
+        int contUserId2Int = Integer.parseInt(contUserId2);
+
+        Contract contractTemp = new Contract(contId, startDate, endDate, contIp1, contIp2, contIp3, contVersion, Integer.valueOf(contNumFeature1), Integer.valueOf(contNumFeature2), Integer.valueOf(contNumFeature3), contUserId1Int, contUserId2Int, contLicenseKey, contCustomer);
         return contractDao.addContract(contractTemp);
     } 
 
