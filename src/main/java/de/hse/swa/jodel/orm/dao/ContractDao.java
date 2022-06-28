@@ -42,7 +42,7 @@ public class ContractDao {
 	}
 
 	public Long getNewContractId() {
-		Query q = em.createQuery("select max(c.contractID) from Contract c");
+		Query q = em.createQuery("select max(c.contID) from Contract c");
 		Long id = (Long) q.getSingleResult();
 		return id + 1;
 	}
