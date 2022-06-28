@@ -25,7 +25,6 @@ class Contracts extends React.Component {
 	    this.state = {	  
 			dialogIsOpen: false,
 			detailsIsOpen: false,
-			contId: "",
 			contracts: [],
 			contract: {},
 		};
@@ -39,7 +38,6 @@ class Contracts extends React.Component {
 
 	openDialog = (cont) => {
 		this.setState({ dialogIsOpen: true });
-		this.setState({ contID: cont.id });
 		this.setState({ contract: cont });
 	  };
 
@@ -113,7 +111,6 @@ class Contracts extends React.Component {
 					</tr>
 				</table>);}
 				})}
-					<ContractDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.contId}/>
 					<DetailsPopUp open={this.state.detailsIsOpen} onClose={this.closeDetails} contract={this.state.contract}/>
 				</div>
 			);}
