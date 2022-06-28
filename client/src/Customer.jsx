@@ -14,8 +14,9 @@ const styles = theme => ({
 		justifyContent: 'center',
 		alignItems: 'center',
 		minHeight: 'calc(100vh - 40px)',
-		border: '5px solid red',
+		border: '5px solid lightblue',
 		padding: '10px',
+		fontFamily: 'Roboto',
 	}
 });
 
@@ -71,9 +72,13 @@ class Customer extends React.Component {
 				return (
 			<div className={classes.center}>
 				<h1>Customers </h1>
-
+				<table style={{background: "lightgray", width:"100%"}}>
+					<tr>
+						<th style={{width:"50%"}}>Customer Adress</th>
+						<th style={{width:"25%"}}>Customer Name</th>
+						<th style={{width:"25%"}}>Customer Department</th>
+					</tr>
 				{this.state.customers&& this.state.customers.map((customer) =>
-                <table style={{background: "lightgray", width:"100%"}}>
                     <tr className="tableRow" key={customer.custID} style={{background: "lightgray", width:"100%"}}>
                         <td className="tableCell" style={{border: "1px solid grey", width: "50%"}}>{customer.address}</td>
                         <td className="tableCell" style={{border: "1px solid grey", width: "25%"}}>{customer.department}</td>
@@ -83,8 +88,8 @@ class Customer extends React.Component {
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" component={Link} to="/user" onClick={()=>{this.props.setFilter(customer.name)}}>User</Button></td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" component={Link} to="/contracts" onClick={()=>{this.props.setFilter(customer.name)}}>Contracts</Button></td>
 					</tr>
-                </table>
                 )}
+				</table>
 				
 				<Button variant="contained" color="primary" onClick={()=>{this.openAddCustomerDialog()}}>Add Customer </Button>
 				<AddCustomer open={this.state.addCustomerDialog} onClose={this.closeAddCustomerDialog}/>
@@ -96,9 +101,14 @@ class Customer extends React.Component {
 				return (
 				<div className={classes.center}>
 				<h1>Customers </h1>
-
+				
+				<table style={{background: "lightgray", width:"100%"}}>
+				<tr>
+						<th style={{width:"50%"}}>Customer Adress</th>
+						<th style={{width:"25%"}}>Customer Name</th>
+						<th style={{width:"25%"}}>Customer Department</th>
+				</tr>
 				{this.state.customers&& this.state.customers.map((customer) =>
-                <table style={{background: "lightgray", width:"100%"}}>
                     <tr className="tableRow" key={customer.custID} style={{background: "lightgray", width:"100%"}}>
                         <td className="tableCell" style={{border: "1px solid grey", width: "50%"}}>{customer.address}</td>
                         <td className="tableCell" style={{border: "1px solid grey", width: "25%"}}>{customer.department}</td>
@@ -106,8 +116,8 @@ class Customer extends React.Component {
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" component={Link} to="/user" onClick={()=>{this.props.setFilter(customer.name)}}>User</Button></td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" component={Link} to="/contracts" onClick={()=>{this.props.setFilter(customer.name)}}>Contracts</Button></td>
 					</tr>
-                </table>
                 )}
+				</table>
 
 				<CustomerDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} customer={this.state.custname} id={this.state.custID}/>
 			</div>
