@@ -1,5 +1,6 @@
 package de.hse.swa.jodel.jaxrs.resources;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.enterprise.context.RequestScoped;
@@ -109,6 +110,30 @@ public class Step4UserResource {
         return userDao.save(tempUser);
     }
 
+    @POST
+    @Path("customer/{custId}/{custName}/{custDepartment}/{custAddress}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Customer addCustomer(@PathParam("custId") Long custId, @PathParam("custName") String custName, @PathParam("custDepartment") String custDepartment, @PathParam("custAddress") String custAddress ) {
+        Customer customerTemp = new Customer(custId, custName, custDepartment, custAddress);
+        return customerDao.addCustomer(customerTemp);
+    } 
+
+    @POST
+    @Path("contract/{contId}/{contStartDate}/{contEndDate}/{contIp1}/{contIp2}/{contIp3}/{contVersion}/{contNumFeature1}/{contNumFeature2}/{contNumFeature3}/{contUserId1}/{contUserId2}/{contLicenseKey}/{contCustomer}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Contract addContract(@PathParam("contId") Long contId, @PathParam("contStartDate") String contStartDate, @PathParam("contEndDate") String contEndDate, @PathParam("contIp1") String contIp1, @PathParam("contIp2") String contIp2, @PathParam("contIp3") String contIp3, @PathParam("contVersion") String contVersion, @PathParam("contNumFeature1") String contNumFeature1, @PathParam("contNumFeature2") String contNumFeature2, @PathParam("contNumFeature3") String contNumFeature3, @PathParam("contUser1") Long contUserId1, @PathParam("contUser2") Long contUserId2, @PathParam("contLicenseKey") String contLicenseKey, @PathParam("contCustomer") String contCustomer) {
+        Date startDate = Date.valueOf(contStartDate);
+        Date endDate = Date.valueOf(contEndDate);
+
+        User user1 = userDao.getUser(contUserId1);
+        User user2 = userDao.getUser(contUserId2);
+
+        Contract contractTemp = new Contract(contId, startDate, endDate, contIp1, contIp2, contIp3, contVersion, Integer.valueOf(contNumFeature1), Integer.valueOf(contNumFeature2), Integer.valueOf(contNumFeature3), user1, user2, contLicenseKey, contCustomer);
+        return contractDao.addContract(contractTemp);
+    } 
+
     /**
      * Create a new user
      * @param user
@@ -123,14 +148,7 @@ public class Step4UserResource {
     }
     
 
-    @POST
-    @Path("customer/{custId}/{custName}/{custDepartment}/{custAddress}")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Customer addCustomer(@PathParam("custId") Long custId, @PathParam("custName") String custName, @PathParam("custDepartment") String custDepartment, @PathParam("custAddress") String custAddress ) {
-        Customer customerTemp = new Customer(custId, custName, custDepartment, custAddress);
-        return customerDao.addCustomer(customerTemp);
-    } 
+    
     
     /**
      * Create a new user
@@ -145,27 +163,19 @@ public class Step4UserResource {
         return customerDao.addCustomer(customer);
     }
 
-
-    @PUT
-    @Path("contract")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Contract addContract(Contract contract) {
-        return contractDao.addContract(contract);
-    } 
     
     /**
      * Create a new user
      * @param user
      * @return the new user
      */
-    @POST
+    /* @POST
     @Path("contract")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Contract updateContract(Contract contract) {
         return contractDao.addContract(contract);
-    }
+    } */
 
     /**
      * Create a new user

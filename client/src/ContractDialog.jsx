@@ -140,7 +140,7 @@ export default function UserDialog(props) {
           <TextField
             margin="dense"
             id="contractUser1"
-            label="Responsible User 1"
+            label="User ID 1"
             type="user"
             variant="standard"
             defaultValue={contract.contractUser1}
@@ -149,7 +149,7 @@ export default function UserDialog(props) {
           <TextField
             margin="dense"
             id="contractUser2"
-            label="Responsible User 2"
+            label="User ID 2"
             type="user"
             variant="standard"
             defaultValue={contract.contractUser2}
