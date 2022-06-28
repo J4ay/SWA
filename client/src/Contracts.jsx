@@ -14,8 +14,9 @@ const styles = theme => ({
 		justifyContent: 'center',
 		alignItems: 'center',
 		minHeight: 'calc(100vh - 40px)',
-		border: '5px solid red',
+		border: '5px solid lightblue',
 		padding: '10px',
+		fontFamily: 'Roboto',
 	}
 });
 
@@ -77,12 +78,17 @@ class Contracts extends React.Component {
 		return (
 			<div className={classes.center}>
 				<h1>Contracts </h1>
-
+				<table style={{background: "lightgray", width:"100%"}}>
+				<tr>
+						<th style={{width:"20%"}}>Customer </th>
+						<th style={{width:"30%"}}>Startdate</th>
+						<th style={{width:"30%"}}>Enddate</th>
+						<th style={{width:"20%"}}>Version</th>
+				</tr>
 				{this.state.contracts&& this.state.contracts.map(contract =>{
 				if(this.props.filter !== contract.contractCustomer && this.props.filter !== "") {return(<div></div>);}
 				else {
 					return(
-				<table style={{background: "lightgray", width:"100%"}}>
 					<tr className="tableRow" key={contract.contID} style={{background: "lightgray", width:"100%"}}>
 						<td className="tableCell" style={{border: "1px solid grey", width: "20%"}}>{contract.contractCustomer}</td>
 						<td className="tableCell" style={{border: "1px solid grey", width: "30%"}}>{contract.contractStartDate}</td>
@@ -92,8 +98,9 @@ class Contracts extends React.Component {
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDialog(contract)}>Edit</Button></td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDetails(contract)}>Details</Button></td>
 					</tr>
-				</table>);}
+					);}
 				})}
+				</table>
 				
 				<Button variant="contained" color="primary" onClick={()=>{this.addContractDialog()}}>Add Contract </Button>
 				<AddContract open={this.state.addContractIsOpen} onClose={this.closeAddContractDialog}/>
@@ -105,12 +112,17 @@ class Contracts extends React.Component {
 			return (
 				<div className={classes.center}>
 					<h1>Contracts </h1>
-	
+					<table style={{background: "lightgray", width:"100%"}}>
+					<tr>
+						<th style={{width:"20%"}}>Customer </th>
+						<th style={{width:"30%"}}>Startdate</th>
+						<th style={{width:"30%"}}>Enddate</th>
+						<th style={{width:"20%"}}>Version</th>
+					</tr>
 					{this.state.contracts&& this.state.contracts.map(contract =>{
 				if(this.props.filter !== contract.contractCustomer && this.props.filter !== "") {return(<div></div>);}
 				else {
 					return(
-				<table style={{background: "lightgray", width:"100%"}}>
 					<tr className="tableRow" key={contract.contID} style={{background: "lightgray", width:"100%"}}>
 						<td className="tableCell" style={{border: "1px solid grey", width: "20%"}}>{contract.contractCustomer}</td>
 						<td className="tableCell" style={{border: "1px solid grey", width: "30%"}}>{contract.contractStartDate}</td>
@@ -118,8 +130,10 @@ class Contracts extends React.Component {
 						<td className="tableCell" style={{border: "1px solid grey", width: "20%"}}>{contract.contractVersion}</td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDetails(contract)}>Details</Button></td>
 					</tr>
-				</table>);}
+				);}
 				})}
+				</table>
+				
 					<DetailsPopUp open={this.state.detailsIsOpen} onClose={this.closeDetails} contract={this.state.contract}/>
 				</div>
 			);}
