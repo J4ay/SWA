@@ -6,13 +6,103 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { Box } from '@mui/material';
 
 function save() {
 }
 
 export default function UserDialog(props) {
-  const { open, onClose , id} = props;
+  //TODO: get contract from props
+  const { open, onClose , id, contract } = props;
+
+  const [startDate, setStartDate] = React.useState(new Date('2022-08-18T21:11:54'));
+  const [endDate, setEndDate] = React.useState(new Date('2022-08-18T21:11:54'));
+
+  
+
+  //var startDate;
+  //var endDate;
+  var user1;
+  var user2;
+  var version;
+  var feature1;
+  var feature2;
+  var feature3;
+  var ip1;
+  var ip2;
+  var ip3;
+  var licenseKey;
+
+  const handleStartDateChange = (dateNew) => {
+    setStartDate(dateNew);
+  }
+
+  const handleEndDateChange = (dateNew) => {
+    setEndDate(dateNew);
+  }
+
+  const handleUser1FieldChange = (event) => {
+    user1 = event.target.value;
+  }
+
+  const handleUser2FieldChange = (event) => {
+    user2 = event.target.value;
+  }
+
+  const handleVersionFieldChange = (event) => {
+    version = event.target.value;
+  }
+
+  const handleFeature1FieldChange = (event) => {
+    feature1 = event.target.value;
+  }
+
+  const handleFeature2FieldChange = (event) => {
+    feature2 = event.target.value;
+  }
+
+  const handleFeature3FieldChange = (event) => {
+    feature3 = event.target.value;
+  }
+
+  const handleIp1FieldChange = (event) => {
+    ip1 = event.target.value;
+  }
+
+  const handleIp2FieldChange = (event) => {
+    ip2 = event.target.value;
+  }
+
+  const handleIp3FieldChange = (event) => {
+    ip3 = event.target.value;
+  }
+
+  const handleLicenseKeyFieldChange = (event) => {
+    licenseKey = event.target.value;
+  }
+
+  const onSave = () => {
+
+    console.log("startDate: " + startDate);
+    console.log("endDate: " + endDate);
+    console.log("user1: " + user1);
+    console.log("user2: " + user2);
+    console.log("version: " + version);
+    console.log("feature1: " + feature1);
+    console.log("feature2: " + feature2);
+    console.log("feature3: " + feature3);
+    console.log("ip1: " + ip1);
+    console.log("ip2: " + ip2);
+    console.log("ip3: " + ip3);
+    console.log("licenseKey: " + licenseKey);
+
+
+    onClose();
+  }
+
 
   return (
     <div>
@@ -24,27 +114,37 @@ export default function UserDialog(props) {
           sx={{
             '& .MuiTextField-root': { m: 1, width: '25ch' },
           }}>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="contractStartDate"
-            label="Start Date"
-            type="startDate"
-            variant="standard"
-          />
-          <TextField
-            margin="dense"
-            id="contractEndDate"
-            label="End Date"
-            type="endDate"
-            variant="standard"
-          />
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <DatePicker
+        label="Start"
+        id="contractStartDate"
+        value={startDate}
+        onChange={(newDate) => {
+          setStartDate(newDate);
+          handleStartDateChange(newDate);
+        }}
+        renderInput={(params) => <TextField {...params} />}
+        />
+
+        <DatePicker
+        label="End"
+        value={endDate}
+        id="contractEndDate"
+        onChange={(newDate) => {
+          setEndDate(newDate);
+          handleEndDateChange(newDate);
+        }}
+        renderInput={(params) => <TextField {...params} />}
+        />
+        </LocalizationProvider>
           <TextField
             margin="dense"
             id="contractUser1"
             label="Responsible User 1"
             type="user"
             variant="standard"
+            defaultValue={contract.contractUser1}
+            onChange={(event) => handleUser1FieldChange(event)}
           />
           <TextField
             margin="dense"
@@ -52,6 +152,8 @@ export default function UserDialog(props) {
             label="Responsible User 2"
             type="user"
             variant="standard"
+            defaultValue={contract.contractUser2}
+            onChange={(event) => handleUser2FieldChange(event)}
           />
           <TextField
             margin="dense"
@@ -59,6 +161,8 @@ export default function UserDialog(props) {
             label="Version"
             type="version"
             variant="standard"
+            defaultValue={contract.contractVersion}
+            onChange={(event) => handleVersionFieldChange(event)}
           />
           <TextField
             margin="dense"
@@ -66,6 +170,8 @@ export default function UserDialog(props) {
             label="Feature 1"
             type="numFeature"
             variant="standard"
+            defaultValue={contract.contractNumFeature1}
+            onChange={(event) => handleFeature1FieldChange(event)}
           />
          <TextField
             margin="dense"
@@ -73,6 +179,8 @@ export default function UserDialog(props) {
             label="Feature 2"
             type="numFeature"
             variant="standard"
+            defaultValue={contract.contractNumFeature2}
+            onChange={(event) => handleFeature2FieldChange(event)}
           />
           <TextField
             margin="dense"
@@ -80,6 +188,8 @@ export default function UserDialog(props) {
             label="Feature 3"
             type="numFeature"
             variant="standard"
+            defaultValue={contract.contractNumFeature3}
+            onChange={(event) => handleFeature3FieldChange(event)}
           />
           <TextField
             margin="dense"
@@ -87,6 +197,8 @@ export default function UserDialog(props) {
             label="IP Number"
             type="IPs"
             variant="standard"
+            defaultValue={contract.contractIp1}
+            onChange={(event) => handleIp1FieldChange(event)}
           />
           <TextField
             margin="dense"
@@ -94,6 +206,8 @@ export default function UserDialog(props) {
             label="IP Number"
             type="IPs"
             variant="standard"
+            defaultValue={contract.contractIp2}
+            onChange={(event) => handleIp2FieldChange(event)}
           />
           <TextField
             margin="dense"
@@ -101,6 +215,8 @@ export default function UserDialog(props) {
             label="IP Number"
             type="IPs"
             variant="standard"
+            defaultValue={contract.contractIp3}
+            onChange={(event) => handleIp3FieldChange(event)}
           />
           <TextField
             margin="dense"
@@ -108,13 +224,15 @@ export default function UserDialog(props) {
             label="License Key"
             type="licenseKey"
             variant="standard"
+            defaultValue={contract.contractLicenseKey}
+            onChange={(event) => handleLicenseKeyFieldChange(event)}
           />
           </Box>
 
         </DialogContent>
         <DialogActions>
           <Button onClick={onClose}>Cancel</Button>
-          <Button onClick={onClose}>Save</Button>
+          <Button onClick={onSave}>Save</Button>
         </DialogActions>
       </Dialog>
     </div>

@@ -37,9 +37,10 @@ class Contracts extends React.Component {
 		});
 	}
 
-	openDialog = (id) => {
+	openDialog = (contract) => {
 		this.setState({ dialogIsOpen: true });
-		this.setState({ contID: id });
+		this.setState({ contID: contract.id });
+		this.setState({ contract: contract });
 	  };
 
 	closeDialog = () => {
@@ -81,7 +82,7 @@ class Contracts extends React.Component {
 						<td className="tableCell" style={{border: "1px solid grey", width: "30%"}}>{contract.contractEndDate}</td>
 						<td className="tableCell" style={{border: "1px solid grey", width: "20%"}}>{contract.contractVersion}</td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.deleteContract(contract.contID)}>Delete</Button></td>
-						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDialog(contract.contID)}>Edit</Button></td>
+						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDialog(contract)}>Edit</Button></td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.openDetails(contract)}>Details</Button></td>
 					</tr>
 				</table>);}
@@ -89,7 +90,7 @@ class Contracts extends React.Component {
 				
 				<Button variant="contained" color="primary" >Add Contract </Button>
 
-				<ContractDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.contId}/>
+				<ContractDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.contId} contract={this.state.contract}/>
 				<DetailsPopUp open={this.state.detailsIsOpen} onClose={this.closeDetails} contract={this.state.contract}/>
 			</div>
 		);}
