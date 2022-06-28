@@ -10,7 +10,10 @@ import { Box } from '@mui/material';
 import HttpService from './HttpService';
 import Customer from './Customer';
 
-function save() {
+
+async function getId() {
+  const res = await HttpService.getNewCustomerId();
+  return res;
 }
 
 export default function AddCustomer(props) {
@@ -19,6 +22,15 @@ export default function AddCustomer(props) {
     const [custName, setCustName] = React.useState('');
     const [custDepartment, setCustDepartment] = React.useState('');
     const [custAddress, setCustAddress] = React.useState('');
+
+    const [id, setId] = React.useState('');
+
+    React.useEffect(() => {
+      getId().then(res => {
+        setId(res);
+      }
+      );
+    }, []);
 
     const handleNameFieldChange = (event) => {
         setCustName(event.target.value);
@@ -33,6 +45,13 @@ export default function AddCustomer(props) {
     }
 
     const onSave = () => {
+      console.log("id: " + id);
+
+      if(custName === "" || custDepartment === "" || custAddress === "") {
+        alert("Please fill in all fields");
+        return;
+      }
+
       HttpService.updateCustomer(id, custName, custDepartment, custAddress);
 
       onClose();

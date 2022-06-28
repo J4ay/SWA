@@ -75,8 +75,7 @@ class Customer extends React.Component {
 				{this.state.customers&& this.state.customers.map((customer) =>
                 <table style={{background: "lightgray", width:"100%"}}>
                     <tr className="tableRow" key={customer.custID} style={{background: "lightgray", width:"100%"}}>
-                        <td className="tableCell" style={{border: "1px solid grey", width: "4%"}}>{customer.custID}</td>
-                        <td className="tableCell" style={{border: "1px solid grey", width: "46%"}}>{customer.address}</td>
+                        <td className="tableCell" style={{border: "1px solid grey", width: "50%"}}>{customer.address}</td>
                         <td className="tableCell" style={{border: "1px solid grey", width: "25%"}}>{customer.department}</td>
                         <td className="tableCell" style={{border: "1px solid grey", width: "25%"}}>{customer.name}</td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" onClick={() => this.deleteCustomer(customer.custID)}>Delete</Button></td>
@@ -101,8 +100,7 @@ class Customer extends React.Component {
 				{this.state.customers&& this.state.customers.map((customer) =>
                 <table style={{background: "lightgray", width:"100%"}}>
                     <tr className="tableRow" key={customer.custID} style={{background: "lightgray", width:"100%"}}>
-                        <td className="tableCell" style={{border: "1px solid grey", width: "4%"}}>{customer.custID}</td>
-                        <td className="tableCell" style={{border: "1px solid grey", width: "46%"}}>{customer.address}</td>
+                        <td className="tableCell" style={{border: "1px solid grey", width: "50%"}}>{customer.address}</td>
                         <td className="tableCell" style={{border: "1px solid grey", width: "25%"}}>{customer.department}</td>
                         <td className="tableCell" style={{border: "1px solid grey", width: "25%"}}>{customer.name}</td>
 						<td><Button sx={{margin: "10px"}}variant="contained" color="primary" component={Link} to="/user" onClick={()=>{this.props.setFilter(customer.name)}}>User</Button></td>
