@@ -14,7 +14,7 @@ import { Box } from '@mui/material';
 function save() {
 }
 
-export default function UserDialog(props) {
+export default function ContractDialog(props) {
   //TODO: get contract from props
   const { open, onClose , contract } = props;
 
@@ -107,7 +107,7 @@ export default function UserDialog(props) {
   return (
     <div>
       <Dialog open={open} onClose={onClose}>
-        <DialogTitle>Contract Details {contract.id}</DialogTitle>
+        <DialogTitle>Contract Details {contract.contId}</DialogTitle>
         <DialogContent>
         <Box
           component="form"
