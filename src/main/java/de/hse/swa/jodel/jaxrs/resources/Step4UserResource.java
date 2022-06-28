@@ -82,6 +82,28 @@ public class Step4UserResource {
         return userDao.getUser(id);
     }
 
+
+    @GET
+    @Path("users/newId")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Long getNewUserId() {
+        return userDao.getNewUserId();
+    }
+
+    @GET
+    @Path("customer/newId")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Long getNewCustomerId() {
+        return customerDao.getNewCustomerId();
+    }
+
+    @GET
+    @Path("contract/newId")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Long getNewContractId() {
+        return contractDao.getNewContractId();
+    }
+
     /**
      * Update an existing user or create a new one
      * @param user

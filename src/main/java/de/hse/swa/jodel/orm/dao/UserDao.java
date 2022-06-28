@@ -55,6 +55,12 @@ public class UserDao {
 		return users;
 	}
 
+	public Long getNewUserId() {
+		Query q = em.createQuery("select max(c.id) from User c");
+		Long id = (Long) q.getSingleResult();
+		return id + 1;
+	}
+
     @Transactional
     public User save(User user) {
     	if (user.getId() != null) {

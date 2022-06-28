@@ -15,6 +15,22 @@ async function getUsers() {
   return response.data;
 }
 
+async function getNewUserId() {
+  const response = await axios.get("http://localhost:8080/users/newId");
+  console.log(response.data);
+  return response.data;
+}
+
+async function getNewCustomerId() {
+  const response = await axios.get("http://localhost:8080/customer/newId");
+  return response.data;
+}
+
+async function getNewContractId() {
+  const response = await axios.get("http://localhost:8080/contract/newId");
+  return response.data;
+}
+
 async function getCustomer(id) {
   const response = await axios.get(`http://localhost:8080/customer/${id}`);
   return response.data;
@@ -87,6 +103,10 @@ const HttpService = {
   getCustomers,
   getContracts,
   getUsers,
+
+  getNewUserId,
+  getNewCustomerId,
+  getNewContractId,
   
   getCustomer,
   getContract,
