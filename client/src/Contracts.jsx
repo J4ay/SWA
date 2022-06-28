@@ -37,10 +37,10 @@ class Contracts extends React.Component {
 		});
 	}
 
-	openDialog = (contract) => {
+	openDialog = (cont) => {
 		this.setState({ dialogIsOpen: true });
-		this.setState({ contID: contract.id });
-		this.setState({ contract: contract });
+		this.setState({ contID: cont.id });
+		this.setState({ contract: cont });
 	  };
 
 	closeDialog = () => {
@@ -90,7 +90,7 @@ class Contracts extends React.Component {
 				
 				<Button variant="contained" color="primary" >Add Contract </Button>
 
-				<ContractDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.contId} contract={this.state.contract}/>
+				<ContractDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} contract={this.state.contract}/>
 				<DetailsPopUp open={this.state.detailsIsOpen} onClose={this.closeDetails} contract={this.state.contract}/>
 			</div>
 		);}

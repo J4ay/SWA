@@ -16,7 +16,7 @@ function save() {
 
 export default function UserDialog(props) {
   //TODO: get contract from props
-  const { open, onClose , id, contract } = props;
+  const { open, onClose , contract } = props;
 
   const [startDate, setStartDate] = React.useState(new Date('2022-08-18T21:11:54'));
   const [endDate, setEndDate] = React.useState(new Date('2022-08-18T21:11:54'));
@@ -107,7 +107,7 @@ export default function UserDialog(props) {
   return (
     <div>
       <Dialog open={open} onClose={onClose}>
-        <DialogTitle>Contract Details {id}</DialogTitle>
+        <DialogTitle>Contract Details {contract.id}</DialogTitle>
         <DialogContent>
         <Box
           component="form"
