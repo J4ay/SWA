@@ -5,6 +5,7 @@ import { Button, Box } from "@material-ui/core";
 
 import HttpService from "./HttpService";
 import UserDialog from "./UserDialog";
+import AddUser from "./AddUser";
 
 const styles = theme => ({
 	center: {
@@ -23,6 +24,7 @@ class User extends React.Component {
 		super(props);
 	    this.state = {	  
 			dialogIsOpen: false,
+			addUserDialogIsOpen: false,
 			userId: "",
 			users: [],
 			user: {},
@@ -43,6 +45,14 @@ class User extends React.Component {
 	closeDialog = () => {
 		this.setState({ dialogIsOpen: false });
 	};
+
+	addUserDialog = () => {
+		this.setState({ addUserDialogIsOpen: true });
+	}
+
+	closeAddUserDialog = () => {
+		this.setState({ addUserDialogIsOpen: false });
+	}
 
 	componentDidMount() {
 		HttpService.getUsers().then(res => {
@@ -76,8 +86,8 @@ class User extends React.Component {
 				})
 				}
 				
-				<Button variant="contained" color="primary" >Add User </Button>
-
+				<Button variant="contained" color="primary" onClick={()=>{this.addUserDialog()}}>Add User </Button>
+				<AddUser open={this.state.addUserDialogIsOpen} onClose={this.closeAddUserDialog} />
 				<UserDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} user={this.state.user} />
 			</div>
 		);}
