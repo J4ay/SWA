@@ -6,6 +6,7 @@ import { Box, Button } from "@material-ui/core";
 import HttpService from "./HttpService";
 import CustomerDialog from "./CustomerDialog";
 import { Link } from "react-router-dom";
+import AddCustomer from "./AddCustomer";
 
 const styles = theme => ({
 	center: {
@@ -25,6 +26,7 @@ class Customer extends React.Component {
 		this.state = {
 			customers: [],
 			dialogIsOpen: false,
+			addCustomerDialog: false,
 			custname: "",
 			custID: "",
 		};
@@ -54,6 +56,14 @@ class Customer extends React.Component {
 		this.setState({ dialogIsOpen: false });
 	  };
 
+	openAddCustomerDialog = () => {
+		this.setState({ addCustomerDialog: true });
+	  }
+	
+	closeAddCustomerDialog = () => {
+		this.setState({ addCustomerDialog: false });
+	}
+
 	render() {
 		const { classes } = this.props;
 
@@ -77,8 +87,8 @@ class Customer extends React.Component {
                 </table>
                 )}
 				
-				<Button variant="contained" color="primary" >Add Customer </Button>
-
+				<Button variant="contained" color="primary" onClick={()=>{this.openAddCustomerDialog()}}>Add Customer </Button>
+				<AddCustomer open={this.state.addCustomerDialog} onClose={this.closeAddCustomerDialog}/>
 				<CustomerDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} customer={this.state.custname} id={this.state.custID}/>
 			</div>
 				);}
