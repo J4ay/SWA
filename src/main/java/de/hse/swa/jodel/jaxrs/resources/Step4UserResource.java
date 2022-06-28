@@ -145,12 +145,28 @@ public class Step4UserResource {
     @Path("contract/{contId}/{contStartDate}/{contEndDate}/{contIp1}/{contIp2}/{contIp3}/{contVersion}/{contNumFeature1}/{contNumFeature2}/{contNumFeature3}/{contUserId1}/{contUserId2}/{contLicenseKey}/{contCustomer}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Contract addContract(@PathParam("contId") Long contId, @PathParam("contStartDate") String contStartDate, @PathParam("contEndDate") String contEndDate, @PathParam("contIp1") String contIp1, @PathParam("contIp2") String contIp2, @PathParam("contIp3") String contIp3, @PathParam("contVersion") String contVersion, @PathParam("contNumFeature1") String contNumFeature1, @PathParam("contNumFeature2") String contNumFeature2, @PathParam("contNumFeature3") String contNumFeature3, @PathParam("contUser1") Long contUserId1, @PathParam("contUser2") Long contUserId2, @PathParam("contLicenseKey") String contLicenseKey, @PathParam("contCustomer") String contCustomer) {
+    public Contract addContract(@PathParam("contId") Long contId, @PathParam("contStartDate") String contStartDate, @PathParam("contEndDate") String contEndDate, @PathParam("contIp1") String contIp1, @PathParam("contIp2") String contIp2, @PathParam("contIp3") String contIp3, @PathParam("contVersion") String contVersion, @PathParam("contNumFeature1") String contNumFeature1, @PathParam("contNumFeature2") String contNumFeature2, @PathParam("contNumFeature3") String contNumFeature3, @PathParam("contUserId1") String contUserId1, @PathParam("contUserId2") String contUserId2, @PathParam("contLicenseKey") String contLicenseKey, @PathParam("contCustomer") String contCustomer) {
+        System.out.println("contId: " + contId);
+        System.out.println("contStartDate: " + contStartDate);
+        System.out.println("contEndDate: " + contEndDate);
+        System.out.println("contIp1: " + contIp1);
+        System.out.println("contIp2: " + contIp2);
+        System.out.println("contIp3: " + contIp3);
+        System.out.println("contVersion: " + contVersion);
+        System.out.println("contNumFeature1: " + contNumFeature1);
+        System.out.println("contNumFeature2: " + contNumFeature2);
+        System.out.println("contNumFeature3: " + contNumFeature3);
+        System.out.println("contUserId1: " + contUserId1);
+        System.out.println("contUserId2: " + contUserId2);
+        System.out.println("contLicenseKey: " + contLicenseKey);
+        System.out.println("contCustomer: " + contCustomer);
+        
+        
         Date startDate = Date.valueOf(contStartDate);
         Date endDate = Date.valueOf(contEndDate);
 
-        User user1 = userDao.getUser(contUserId1);
-        User user2 = userDao.getUser(contUserId2);
+        User user1 = userDao.getUser(Long.decode(contUserId1));
+        User user2 = userDao.getUser(Long.decode(contUserId2));
 
         Contract contractTemp = new Contract(contId, startDate, endDate, contIp1, contIp2, contIp3, contVersion, Integer.valueOf(contNumFeature1), Integer.valueOf(contNumFeature2), Integer.valueOf(contNumFeature3), user1, user2, contLicenseKey, contCustomer);
         return contractDao.addContract(contractTemp);

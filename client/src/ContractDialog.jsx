@@ -10,6 +10,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { Box } from '@mui/material';
+import HttpService from './HttpService';
 
 function save() {
 }
@@ -25,16 +26,16 @@ export default function ContractDialog(props) {
 
   //var startDate;
   //var endDate;
-  var user1;
-  var user2;
-  var version;
-  var feature1;
-  var feature2;
-  var feature3;
-  var ip1;
-  var ip2;
-  var ip3;
-  var licenseKey;
+  var user1 = contract.contractUser1;
+  var user2 = contract.contractUser2;
+  var version = contract.contractVersion;
+  var feature1 = contract.contractNumFeature1;
+  var feature2 = contract.contractNumFeature2;
+  var feature3 = contract.contractNumFeature3;
+  var ip1 = contract.contractIp1;
+  var ip2 = contract.contractIp2;
+  var ip3 = contract.contractIp3;
+  var licenseKey = contract.contractLicenseKey;
 
   const handleStartDateChange = (dateNew) => {
     setStartDate(dateNew);
@@ -86,19 +87,24 @@ export default function ContractDialog(props) {
 
   const onSave = () => {
 
+    console.log("Id: " + contract.contID);
     console.log("startDate: " + startDate);
     console.log("endDate: " + endDate);
-    console.log("user1: " + user1);
-    console.log("user2: " + user2);
+    console.log("ip1: " + ip1);
+    console.log("ip2: " + ip2);
+    console.log("ip3: " + ip3);
     console.log("version: " + version);
     console.log("feature1: " + feature1);
     console.log("feature2: " + feature2);
     console.log("feature3: " + feature3);
-    console.log("ip1: " + ip1);
-    console.log("ip2: " + ip2);
-    console.log("ip3: " + ip3);
+    console.log("user1: " + user1);
+    console.log("user2: " + user2);
     console.log("licenseKey: " + licenseKey);
+    console.log("contractId: " + contract.contractCustomer);
 
+    var userString1 = user1.toString();
+    var userString2 = user2.toString();
+    HttpService.updateContract(contract.contID, startDate, endDate, ip1, ip2, ip3, version, feature1, feature2, feature3, user1, user2, licenseKey, contract.contractCustomer)
 
     onClose();
   }

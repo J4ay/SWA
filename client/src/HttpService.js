@@ -83,10 +83,13 @@ async function updateCustomer(custId, custName, custDepartment, custAddress) {
   return response.data;
 }
 
-async function updateContract(contract) {
-  const response = await axios.put(
-    `http://localhost:8080/contract/`,
-    contract
+async function updateContract(contId, contStartDate, contEndDate, contIp1, contIp2, contIp3, contVersion, contNumFeature1, contNumFeature2, contNumFeature3, contUserId1, contUserId2, contLicenseKey, contCustomer) {
+  //var startDateString = contStartDate.getDate() + "-" + (contStartDate.getMonth()) + "-" + (contStartDate.getYear() + 1900);
+  var startDateString = (contStartDate.getYear() + 1900) + "-" + (contStartDate.getMonth()) + "-" + contStartDate.getDate();
+  //var endDateString = contEndDate.getDate() + "-" + (contEndDate.getMonth()) + "-" + (contEndDate.getYear() + 1900);
+  var endDateString = (contEndDate.getYear() + 1900) + "-" + (contEndDate.getMonth()) + "-" + contEndDate.getDate();
+  const response = await axios.post(
+    `http://localhost:8080/contract/${contId}/${startDateString}/${endDateString}/${contIp1}/${contIp2}/${contIp3}/${contVersion}/${contNumFeature1}/${contNumFeature2}/${contNumFeature3}/${contUserId1}/${contUserId2}/${contLicenseKey}/${contCustomer}`
   );
   return response.data;
 }
