@@ -65,9 +65,13 @@ async function createCustomer(customer) {
   return response.data;
 }
 
-async function createContract(id, startDate, endDate, customer, user1, user2, version, feature1 , feature2 , feature3, ip1, ip2, ip3, licenseKey) {
+async function createContract(id, contStartDate, contEndDate, customer, user1, user2, version, feature1 , feature2 , feature3, ip1, ip2, ip3, licenseKey) {
+  var startDate = (contEndDate.getYear() + 1900) + "-" + (contEndDate.getMonth()) + "-" + contEndDate.getDate();
+  var endDate = (contStartDate.getYear() + 1900) + "-" + (contStartDate.getMonth()) + "-" + contStartDate.getDate();
+
+
   const response = await axios.post(
-    `http://localhost:8080/contract/${id}/${startDate}/${endDate}/${customer}/${user1}/${user2}/${version}/${feature1}/${feature2}/${feature3}/${ip1}/${ip2}/${ip3}/${licenseKey}`
+    `http://localhost:8080/contract/${id}/${startDate}/${endDate}/${ip1}/${ip2}/${ip3}/${version}/${feature1}/${feature2}/${feature3}/${user1}/${user2}/${licenseKey}/${customer}`
   );
   return response.data;
 }
