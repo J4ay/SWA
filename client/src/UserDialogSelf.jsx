@@ -72,7 +72,7 @@ export default function UserDialogSelf(props) {
 
     onClose();
   }
-  
+    if(user.admin) {
     return (
       <div>
         <Dialog open={open} onClose={onClose}>
@@ -152,5 +152,86 @@ export default function UserDialogSelf(props) {
           </DialogActions>
         </Dialog>
       </div>
-    );
+    );}
+    else {
+      return (
+        <div>
+          <Dialog open={open} onClose={onClose}>
+            <DialogTitle>Edit User {user.id}</DialogTitle>
+            <DialogContent>
+            <Box
+            component="form"
+            sx={{
+              '& .MuiTextField-root': { m: 1, width: '25ch' },
+            }}
+              >
+              <TextField
+                autoFocus
+                margin="dense"
+                id="userCustomer"
+                label="Customer Name"
+                type="sutomerName"
+                variant="standard"
+                defaultValue={user.customerName}
+                onChange={(event) => handleCustNameFieldChange(event)}
+              />
+              <TextField
+                autoFocus
+                margin="dense"
+                id="userFirstName"
+                label="First Name"
+                type="firstName"
+                variant="standard"
+                defaultValue={user.firstName}
+                onChange={(event) => handleFirstNameFieldChange(event)}
+              />
+              <TextField
+                margin="dense"
+                id="userLastName"
+                label="Last Name"
+                type="lastName"
+                variant="standard"
+                defaultValue={user.lastName}
+                onChange={(event) => handleLastNameFieldChange(event)}
+              />
+              <TextField
+                margin="dense"
+                id="userMail"
+                label="E-Mail"
+                type="email"
+                variant="standard"
+                defaultValue={user.mail}
+                onChange={(event) => handleEmailFieldChange(event)}
+              />
+              <TextField
+                margin="dense"
+                id="userPhoneNr1"
+                label="Phone (1)"
+                type="phoneNr1"
+                variant="standard"
+                defaultValue={user.phoneNumber1}
+                onChange={(event) => handlePhoneNrFieldChange(event)}
+              />
+              <TextField
+                margin="dense"
+                id="userPhoneNr2"
+                label="Phone (2)"
+                type="phoneNr2"
+                variant="standard"
+                defaultValue={user.phoneNumber2}
+                onChange={(event) => handlePhoneNr2FieldChange(event)}
+              />
+              <FormGroup>
+            </FormGroup>
+             </Box>
+  
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={onClose}>Cancel</Button>
+              <Button onClick={onSave}>Save</Button>
+            </DialogActions>
+          </Dialog>
+        </div>
+        );}
+
   }
