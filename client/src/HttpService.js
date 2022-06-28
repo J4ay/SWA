@@ -65,8 +65,10 @@ async function createCustomer(customer) {
   return response.data;
 }
 
-async function createContract(contract) {
-  const response = await axios.post("http://localhost:8080/contract", contract);
+async function createContract(id, startDate, endDate, customer, user1, user2, version, feature1 , feature2 , feature3, ip1, ip2, ip3, licenseKey) {
+  const response = await axios.post(
+    `http://localhost:8080/contract/${id}/${startDate}/${endDate}/${customer}/${user1}/${user2}/${version}/${feature1}/${feature2}/${feature3}/${ip1}/${ip2}/${ip3}/${licenseKey}`
+  );
   return response.data;
 }
 

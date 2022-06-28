@@ -24,7 +24,7 @@ export default function AddUser(props) {
   const [disableSave, setDisableSave] = React.useState(false);
     const [id, setId] = React.useState('');
 
-    React.useState(() => {
+    React.useEffect(() => {
         getId().then(res => {
             setId(res);
         })
@@ -89,6 +89,10 @@ export default function AddUser(props) {
   }
 
   const onSave = () => {
+    if(password === "" || userName === "" || userCustName === "" || userFirstName === "" || userLastName === "" || userEmail === "" || userPhoneNr === "" || userPhoneNr2 === ""){
+      alert("Please fill all fields");
+      return;
+    }
 
     if(userPhoneNr2 === "") {
         userPhoneNr2 = "-"

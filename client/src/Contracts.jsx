@@ -6,6 +6,7 @@ import ContractDialog from './ContractDialog'
 
 import HttpService from "./HttpService";
 import DetailsPopUp from "./DetailsPopUp";
+import AddContract from "./AddContract";
 
 const styles = theme => ({
 	center: {
@@ -25,6 +26,7 @@ class Contracts extends React.Component {
 	    this.state = {	  
 			dialogIsOpen: false,
 			detailsIsOpen: false,
+			addContractIsOpen: false,
 			contracts: [],
 			contract: {},
 		};
@@ -54,6 +56,13 @@ class Contracts extends React.Component {
 		this.setState({ detailsIsOpen: false });
 	};
 
+	addContractDialog = () => {
+		this.setState({ addContractIsOpen: true });
+	}
+
+	closeAddContractDialog = () => {
+		this.setState({ addContractIsOpen: false });
+	}
 
 	componentDidMount() {
 		HttpService.getContracts().then(res => {
@@ -86,8 +95,8 @@ class Contracts extends React.Component {
 				</table>);}
 				})}
 				
-				<Button variant="contained" color="primary" >Add Contract </Button>
-
+				<Button variant="contained" color="primary" onClick={()=>{this.addContractDialog()}}>Add Contract </Button>
+				<AddContract open={this.state.addContractIsOpen} onClose={this.closeAddContractDialog}/>
 				<ContractDialog open={this.state.dialogIsOpen} onClose={this.closeDialog} contract={this.state.contract}/>
 				<DetailsPopUp open={this.state.detailsIsOpen} onClose={this.closeDetails} contract={this.state.contract}/>
 			</div>
