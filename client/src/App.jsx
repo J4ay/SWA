@@ -31,7 +31,7 @@ class App extends React.Component {
 		this.state = {
 			loggedIn: false,
 			isAdmin: false,
-			userid: "",
+			user: {},
 			dialogIsOpen: false,
 			filter: "",
 		};
@@ -57,8 +57,8 @@ class App extends React.Component {
 		this.setState({ isAdmin: false });
 	}
 
-	setUser = (id) => {
-		this.setState({ userid: id });
+	setUser = (user) => {
+		this.setState({ user: user });
 	}
 
 	setFilter = (filter) => {
@@ -89,7 +89,7 @@ class App extends React.Component {
 						<Route path="/contracts" element={<Contracts isAdmin={this.state.isAdmin} filter={this.state.filter} />} />
 						<Route path="/user" element={<User isAdmin={this.state.isAdmin} filter={this.state.filter} />} />
 					</Routes>
-					<UserDialogSelf open={this.state.dialogIsOpen} onClose={this.closeDialog} id={this.state.userid} />
+					<UserDialogSelf open={this.state.dialogIsOpen} onClose={this.closeDialog} user={this.state.user} />
 				</div>
 			);
 		} else {
