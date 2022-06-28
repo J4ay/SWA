@@ -17,7 +17,6 @@ async function getUsers() {
 
 async function getNewUserId() {
   const response = await axios.get("http://localhost:8080/users/newId");
-  console.log(response.data);
   return response.data;
 }
 
@@ -71,8 +70,10 @@ async function createContract(contract) {
   return response.data;
 }
 
-async function createUser(user) {
-  const response = await axios.post("http://localhost:8080/users", user);
+async function createUser(userId, username, password, userFirstName, userLastName, userEmail, userPhoneNr, userPhoneNr2, isAdmin, userCustName) {
+
+  const response = await axios.post(`http://localhost:8080/users/${userId}/${username}/${password}/${userFirstName}/${userLastName}/${userEmail}/${userPhoneNr}/${userPhoneNr2}/${isAdmin}/${userCustName}`);
+  
   return response.data;
 }
 

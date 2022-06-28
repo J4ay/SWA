@@ -161,13 +161,14 @@ public class Step4UserResource {
      * @param user
      * @return the new user
      */
-    @POST
-    @Path("users")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public User updateUser(User user) {
-        return userDao.save(user);
-    }
+    // @POST
+    // @Path("users/{id}/{username}/{password}/{userFirstName}/{userLastName}/{userEmail}/{userPhoneNr}/{userPhoneNr2}/{isAdmin}/{userCustName}")
+    // @Consumes(MediaType.APPLICATION_JSON)
+    // @Produces(MediaType.APPLICATION_JSON)
+    // public User updateUser(@PathParam("id") Long id, @PathParam("username") String username, @PathParam("password") String password , @PathParam("userFirstName") String userFirstName, @PathParam("userLastName") String userLastName, @PathParam("userEmail") String userEmail, @PathParam("userPhoneNr") String userPhoneNr, @PathParam("userPhoneNr2") String userPhoneNr2, @PathParam("isAdmin") Boolean isAdmin , @PathParam("userCustName") String userCustName) {
+    //     User tempUser = new User(id, username, password, userFirstName, userLastName, userEmail, userPhoneNr, userPhoneNr2, isAdmin, userCustName);
+    //     return userDao.save(tempUser);
+    // }
     
 
     
