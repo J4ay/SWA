@@ -1,67 +1,70 @@
 import axios from "axios";
+import * as url from "./Url";
+
+const base_url = url.path;
 
 async function getCustomers() {
-  const response = await axios.get("http://localhost:8080/customer");
+  const response = await axios.get(base_url + "/customer");
   return response.data;
 }
 
 async function getContracts() {
-  const response = await axios.get("http://localhost:8080/contract");
+  const response = await axios.get(base_url + "/contract");
   return response.data;
 }
 
 async function getUsers() {
-  const response = await axios.get("http://localhost:8080/users");
+  const response = await axios.get(base_url + "/users");
   return response.data;
 }
 
 async function getNewUserId() {
-  const response = await axios.get("http://localhost:8080/users/newId");
+  const response = await axios.get(base_url + "/users/newId");
   return response.data;
 }
 
 async function getNewCustomerId() {
-  const response = await axios.get("http://localhost:8080/customer/newId");
+  const response = await axios.get(base_url + "/customer/newId");
   return response.data;
 }
 
 async function getNewContractId() {
-  const response = await axios.get("http://localhost:8080/contract/newId");
+  const response = await axios.get(base_url + "/contract/newId");
   return response.data;
 }
 
 async function getCustomer(id) {
-  const response = await axios.get(`http://localhost:8080/customer/${id}`);
+  const response = await axios.get(base_url + `/customer/${id}`);
   return response.data;
 }
 
 async function getContract(id) {
-  const response = await axios.get(`http://localhost:8080/contract/${id}`);
+  const response = await axios.get(base_url + `/contract/${id}`);
   return response.data;
 }
 
 async function getUser(id) {
-  const response = await axios.get(`http://localhost:8080/users/${id}`);
+  const response = await axios.get(base_url + `/users/${id}`);
   return response.data;
 }
 
 async function deleteCustomer(id) {
-  const response = await axios.delete(`http://localhost:8080/customer/${id}`);
+  const response = await axios.delete(base_url + `/customer/${id}`);
   return response.data;
 }
 
 async function deleteContract(id) {
-  const response = await axios.delete(`http://localhost:8080/contract/${id}`);
+  const response = await axios.delete(base_url + `/contract/${id}`);
   return response.data;
 }
 
 async function deleteUser(id) {
-  const response = await axios.delete(`http://localhost:8080/users/${id}`);
+  const response = await axios.delete(base_url + `/users/${id}`);
   return response.data;
 }
 
 async function createCustomer(customer) {
-  const response = await axios.post("http://localhost:8080/customer", customer);
+  const response = await axios.post(base_url + "/customer", customer);
   return response.data;
 }
 
@@ -71,21 +74,21 @@ async function createContract(id, contStartDate, contEndDate, customer, user1, u
 
 
   const response = await axios.post(
-    `http://localhost:8080/contract/${id}/${startDate}/${endDate}/${ip1}/${ip2}/${ip3}/${version}/${feature1}/${feature2}/${feature3}/${user1}/${user2}/${licenseKey}/${customer}`
+    base_url + `/contract/${id}/${startDate}/${endDate}/${ip1}/${ip2}/${ip3}/${version}/${feature1}/${feature2}/${feature3}/${user1}/${user2}/${licenseKey}/${customer}`
   );
   return response.data;
 }
 
 async function createUser(userId, username, password, userFirstName, userLastName, userEmail, userPhoneNr, userPhoneNr2, isAdmin, userCustName) {
 
-  const response = await axios.post(`http://localhost:8080/users/${userId}/${username}/${password}/${userFirstName}/${userLastName}/${userEmail}/${userPhoneNr}/${userPhoneNr2}/${isAdmin}/${userCustName}`);
+  const response = await axios.post(base_url + `/users/${userId}/${username}/${password}/${userFirstName}/${userLastName}/${userEmail}/${userPhoneNr}/${userPhoneNr2}/${isAdmin}/${userCustName}`);
   
   return response.data;
 }
 
 async function updateCustomer(custId, custName, custDepartment, custAddress) {
   const response = await axios.post(
-    `http://localhost:8080/customer/${custId}/${custName}/${custDepartment}/${custAddress}`
+    base_url + `/customer/${custId}/${custName}/${custDepartment}/${custAddress}`
   );
   return response.data;
 }
@@ -96,14 +99,14 @@ async function updateContract(contId, contStartDate, contEndDate, contIp1, contI
   //var endDateString = contEndDate.getDate() + "-" + (contEndDate.getMonth()) + "-" + (contEndDate.getYear() + 1900);
   var endDateString = (contEndDate.getYear() + 1900) + "-" + (contEndDate.getMonth()) + "-" + contEndDate.getDate();
   const response = await axios.post(
-    `http://localhost:8080/contract/${contId}/${startDateString}/${endDateString}/${contIp1}/${contIp2}/${contIp3}/${contVersion}/${contNumFeature1}/${contNumFeature2}/${contNumFeature3}/${contUserId1}/${contUserId2}/${contLicenseKey}/${contCustomer}`
+    base_url + `/contract/${contId}/${startDateString}/${endDateString}/${contIp1}/${contIp2}/${contIp3}/${contVersion}/${contNumFeature1}/${contNumFeature2}/${contNumFeature3}/${contUserId1}/${contUserId2}/${contLicenseKey}/${contCustomer}`
   );
   return response.data;
 }
 
 async function updateUser(id, username, password, userFirstName, userLastName, userEmail, userPhoneNr, userPhoneNr2, isAdmin, userCustName) {
   const response = await axios.post(
-    `http://localhost:8080/users/${id}/${username}/${password}/${userFirstName}/${userLastName}/${userEmail}/${userPhoneNr}/${userPhoneNr2}/${isAdmin}/${userCustName}`
+    base_url + `/users/${id}/${username}/${password}/${userFirstName}/${userLastName}/${userEmail}/${userPhoneNr}/${userPhoneNr2}/${isAdmin}/${userCustName}`
   );
   return response.data;
 }

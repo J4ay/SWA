@@ -12,6 +12,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import Contracts from "./Contracts";
 import { IconButton } from "@material-ui/core";
 import UserDialogSelf from "./UserDialogSelf";
+import * as url from "./Url";
 
 const styles = theme => ({
 	center: {
@@ -22,7 +23,7 @@ const styles = theme => ({
 	},
 });
 
-const theUrl = "http://localhost:8080/";
+const theUrl = url.path;
 
 class App extends React.Component {
 
