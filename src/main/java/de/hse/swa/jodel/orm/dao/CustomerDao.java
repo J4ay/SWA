@@ -50,6 +50,12 @@ public class CustomerDao {
     	}
     	return customer;
     }
+
+	public Long getNewCustomerId() {
+		Query q = em.createQuery("select max(c.custID) from Customer c");
+		Long id = (Long) q.getSingleResult();
+		return id + 1;
+	}
 	
 
 	@Transactional

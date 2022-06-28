@@ -41,6 +41,12 @@ public class ContractDao {
 		return contracts;
 	}
 
+	public Long getNewContractId() {
+		Query q = em.createQuery("select max(c.contractID) from Contract c");
+		Long id = (Long) q.getSingleResult();
+		return id + 1;
+	}
+
     @Transactional
     public Contract addContract(Contract contract) {
     	if (contract.getContID() != null) {
