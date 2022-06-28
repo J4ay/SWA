@@ -72,11 +72,11 @@ public class Contract implements Serializable {
 	private int contractNumFeature3;
 
 	@Basic(optional=true)
-	@Column(name = "contractUser1")
+	@Column(name = "contractUser1", length=2048)
 	private User contractUser1;
 
 	@Basic(optional=true)
-	@Column(name = "contractUser2")
+	@Column(name = "contractUser2", length=2048)
 	private User contractUser2;
 
     @Basic(optional=false)
